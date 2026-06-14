@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora: ¿autónomo o empresa? ¿Qué es más rentable?</title>
+<style>
+  :root{
+    --bg:#fff; --panel:#f4f1ea; --green:#e9f5d0; --greenDark:#2f6b2f;
+    --text:#1a1a1a; --muted:#6b6b6b; --border:#d8d4c8; --best:#2f6b2f; --worst:#9a6b00;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); margin:0; padding:24px; line-height:1.5;}
+  .wrap{max-width:1000px; margin:0 auto;}
+  h1{font-size:24px; font-weight:600; margin:0 0 4px;}
+  .sub{color:var(--muted); font-size:14px; margin:0 0 24px; max-width:760px;}
+  .top{display:grid; grid-template-columns:340px 1fr; gap:20px; align-items:start;}
+  @media(max-width:820px){.top{grid-template-columns:1fr;}}
+  .panel{background:var(--panel); border-radius:16px; padding:22px;}
+  .panel h2{font-size:18px; font-weight:600; margin:0 0 18px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:13px; color:var(--muted); margin-bottom:5px;}
+  .field .hint{font-size:11px; color:var(--muted); margin-top:3px;}
+  .inwrap{position:relative;}
+  .inwrap input{width:100%; padding:9px 28px 9px 12px; font-size:15px; border:1px solid var(--border);
+    border-radius:8px; background:#fff; color:var(--text);}
+  .inwrap .eur{position:absolute; right:11px; top:9px; color:var(--muted); font-size:14px;}
+  .field input:focus{outline:none; border-color:var(--greenDark);}
+  .radios{display:flex; flex-direction:column; gap:8px; margin-top:4px;}
+  .radios label{display:flex; align-items:center; gap:8px; font-size:14px; color:var(--text); cursor:pointer;}
+  .results{display:flex; flex-direction:column; gap:16px;}
+  .yearblock{background:var(--green); border-radius:16px; padding:20px;}
+  .yearblock h3{font-size:16px; font-weight:600; margin:0 0 14px;}
+  .cmp{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .opt{background:#fff; border-radius:12px; padding:14px; border:1px solid rgba(0,0,0,.06);}
+  .opt .name{font-size:13px; color:var(--muted); display:flex; justify-content:space-between; align-items:center;}
+  .badge{font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px;}
+  .badge.best{background:#d9efb8; color:var(--best);}
+  .badge.worst{background:#f6e7c4; color:var(--worst);}
+  .opt .neto{font-size:26px; font-weight:600; margin:6px 0 2px;}
+  .opt .gei{font-size:12px; color:var(--muted);}
+  .detail{margin-top:12px; font-size:13px;}
+  .detail table{width:100%; border-collapse:collapse;}
+  .detail td{padding:3px 0; color:var(--text);}
+  .detail td.l{color:var(--muted);}
+  .detail td.r{text-align:right; white-space:nowrap;}
+  .detail .sec{font-weight:600; padding-top:6px;}
+  .toggle{margin-top:12px; background:none; border:none; color:var(--greenDark); font-size:13px;
+    font-weight:600; cursor:pointer; padding:0; text-decoration:underline;}
+  .note{font-size:12px; color:var(--muted); margin:22px 0 0; line-height:1.6; max-width:900px;}
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>¿Autónomo o empresa? ¿Qué es más rentable?</h1>
+  <p class="sub">Compara tu beneficio neto como autónomo frente a constituir una sociedad limitada, en el primer año, el segundo y a partir del tercero. Resultado orientativo basado en la normativa fiscal española.</p>
+
+  <div class="top">
+    <div class="panel">
+      <h2>Tu situación</h2>
+      <div class="field">
+        <label>Ingresos anuales</label>
+        <div class="inwrap"><input type="number" id="income" value="50000" min="0" step="1000"><span class="eur">€</span></div>
+      </div>
+      <div class="field">
+        <label>Gastos de la actividad (anuales)</label>
+        <div class="inwrap"><input type="number" id="expenses" value="10000" min="0" step="500"><span class="eur">€</span></div>
+      </div>
+      <div class="field">
+        <label>¿Qué salario cobrarás al mes? (solo SL)</label>
+        <div class="inwrap"><input type="number" id="salary" value="1200" min="0" step="100"><span class="eur">€</span></div>
+        <div class="hint">El resto de beneficios se reparten como dividendos para optimizar impuestos.</div>
+      </div>
+      <div class="field">
+        <label>¿Eres autónomo ahora mismo?</label>
+        <div class="radios">
+          <label><input type="radio" name="status" value="never" checked> No, no soy autónomo</label>
+          <label><input type="radio" name="status" value="now"> Sí, soy autónomo ahora mismo</label>
+        </div>
+        <div class="hint">Si no lo eres, el primer año aplica la tarifa plana (80&euro;/mes).</div>
+      </div>
+    </div>
+
+    <div class="results" id="results"></div>
+  </div>
+
+  <p class="note" id="legalnote"></p>
+</div>
+
+<script>
+(function(){
+  const IRPF=[[0,12450,.19],[12450,20200,.24],[20200,35200,.30],[35200,60000,.37],[60000,300000,.45],[300000,Infinity,.47]];
+  const SAV=[[0,6000,.19],[6000,50000,.21],[50000,200000,.23],[200000,300000,.27],[300000,Infinity,.28]];
+  const RETA=[[670,205],[900,225],[1166.7,266],[1300,298],[1500,301],[1700,301],[1850,359],[2030,379],[2330,400],[2760,425],[3190,451],[3620,477],[4050,502],[6000,543],[Infinity,605]];
+  const PMIN=5550, DIF_R=.05, DIF_CAP=2000, WORK=2000, TARIFA_PLANA=960, ADMIN_SS=3600, FEE_A=600, FEE_E=1200, YF=0.87;
+
+  function prog(br,b){ if(b<=0)return 0; let t=0; for(const[lo,hi,r]of br){ if(b>hi) t+=(hi-lo)*r; else { t+=(b-lo)*r; break; } } return t; }
+  function reta(yAnnual){ const m=yAnnual/12; for(const[hi,c]of RETA) if(m<=hi) return c*12; return 605*12; }
+
+  function autonomo(income,exp,year,already){
+    const SS=(year===1&&!already)?TARIFA_PLANA:reta(YF*(income-exp));
+    const rend=income-exp-SS-FEE_A;
+    const dif=Math.min(DIF_R*Math.max(rend,0),DIF_CAP);
+    const base=Math.max(rend-dif-PMIN,0);
+    const irpf=prog(IRPF,base);
+    const neto=income-exp-SS-FEE_A-irpf;
+    return {SS,fee:FEE_A,irpfSalary:irpf,IS:0,irpfDiv:0,neto,gei:exp+SS+FEE_A+irpf,netSalMonth:null,divNet:null};
+  }
+  function empresa(income,exp,salM,year,already){
+    const gs=salM*12;
+    const SS=(year===1&&!already)?TARIFA_PLANA:ADMIN_SS;
+    const sb=Math.max(gs-SS-WORK-PMIN,0);
+    const irpfS=prog(IRPF,sb);
+    const netS=gs-SS-irpfS;
+    const isb=Math.max(income-exp-gs-FEE_E,0);
+    const isr=(year<=2)?.15:.23;
+    const IS=isb*isr;
+    const dg=isb-IS;
+    const irpfD=prog(SAV,dg);
+    const netD=dg-irpfD;
+    return {SS,fee:FEE_E,irpfSalary:irpfS,IS,irpfDiv:irpfD,neto:netS+netD,gei:exp+SS+FEE_E+irpfS+IS+irpfD,netSalMonth:netS/12,divNet:netD,isRate:isr};
+  }
+
+  const eur=x=>Math.round(x).toLocaleString('es-ES')+'€';
+  const eur2=x=>x.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+'€';
+  const PERIODS=[{y:1,t:'Primer año'},{y:2,t:'Segundo año'},{y:3,t:'Desde el tercer año'}];
+  let showDetail={};
+
+  function detailRows(d,isEmp){
+    let h='<table>';
+    h+='<tr><td class="l">Gastos operativos</td><td class="r">'+eur(d.SS+d.fee)+'</td></tr>';
+    h+='<tr><td class="l">&nbsp;&nbsp;Seguridad Social</td><td class="r">'+eur(d.SS)+'</td></tr>';
+    h+='<tr><td class="l">&nbsp;&nbsp;Gastos administrativos</td><td class="r">'+eur(d.fee)+'</td></tr>';
+    h+='<tr><td class="l sec">Impuestos</td><td class="r sec">'+eur(d.irpfSalary+d.IS+d.irpfDiv)+'</td></tr>';
+    h+='<tr><td class="l">&nbsp;&nbsp;'+(isEmp?'por salario (IRPF)':'IRPF')+'</td><td class="r">'+eur(d.irpfSalary)+'</td></tr>';
+    if(isEmp){
+      h+='<tr><td class="l">&nbsp;&nbsp;de la empresa (IS '+Math.round(d.isRate*100)+'%)</td><td class="r">'+eur(d.IS)+'</td></tr>';
+      h+='<tr><td class="l">&nbsp;&nbsp;por dividendos (IRPF)</td><td class="r">'+eur(d.irpfDiv)+'</td></tr>';
+      h+='<tr><td class="l sec">Salario neto mensual</td><td class="r sec">'+eur(d.netSalMonth)+'</td></tr>';
+      h+='<tr><td class="l">Dividendos netos anuales</td><td class="r">'+eur(d.divNet)+'</td></tr>';
+    }
+    h+='</table>';
+    return h;
+  }
+
+  function optCard(label,d,best,isEmp,key){
+    return '<div class="opt"><div class="name"><span>'+label+'</span>'+
+      '<span class="badge '+(best?'best':'worst')+'">'+(best?'Mejor':'Peor')+'</span></div>'+
+      '<div class="neto">'+eur(d.neto)+'</div>'+
+      '<div class="gei">'+eur(d.gei)+' en gastos e impuestos</div>'+
+      (showDetail[key]?'<div class="detail">'+detailRows(d,isEmp)+'</div>':'')+
+      '</div>';
+  }
+
+  function render(){
+    const income=+document.getElementById('income').value||0;
+    const exp=+document.getElementById('expenses').value||0;
+    const sal=+document.getElementById('salary').value||0;
+    const already=document.querySelector('input[name="status"]:checked').value==='now';
+    let html='';
+    PERIODS.forEach(p=>{
+      const a=autonomo(income,exp,p.y,already);
+      const e=empresa(income,exp,sal,p.y,already);
+      const aBest=a.neto>=e.neto;
+      const keyA='a'+p.y, keyE='e'+p.y;
+      html+='<div class="yearblock"><h3>'+p.t+'</h3><div class="cmp">'+
+        optCard('Como autónomo',a,aBest,false,keyA)+
+        optCard('Como empresa (SL)',e,!aBest,true,keyE)+
+        '</div><button class="toggle" data-y="'+p.y+'">'+(showDetail[keyA]?'Ocultar cálculos':'Ver cálculos')+'</button></div>';
+    });
+    document.getElementById('results').innerHTML=html;
+    document.querySelectorAll('.toggle').forEach(b=>b.addEventListener('click',()=>{
+      const y=b.dataset.y; const on=!showDetail['a'+y]; showDetail['a'+y]=on; showDetail['e'+y]=on; render();
+    }));
+  }
+
+  document.getElementById('legalnote').innerHTML=
+    'C&oacute;mo se calcula: <b>Autónomo</b> &mdash; IRPF progresivo (19/24/30/37/45/47%) sobre ingresos &minus; gastos &minus; cuota RETA &minus; gestor&iacute;a (600&euro;/a&ntilde;o), con reducci&oacute;n por gastos de dif&iacute;cil justificaci&oacute;n (5%, m&aacute;x. 2.000&euro;) y m&iacute;nimo personal (5.550&euro;). La cuota de Seguridad Social sale de la tabla de tramos por rendimientos; el primer a&ntilde;o aplica tarifa plana (80&euro;/mes) si a&uacute;n no eres aut&oacute;nomo. '+
+    '<b>Empresa (SL)</b> &mdash; el salario tributa por IRPF; el beneficio de la sociedad paga Impuesto de Sociedades (15% los dos primeros a&ntilde;os, 23% despu&eacute;s) y lo restante se reparte como dividendos, gravados en la base del ahorro (19/21/23/27/28%). Gestor&iacute;a 1.200&euro;/a&ntilde;o y cuota de administrador 300&euro;/mes (tarifa plana el primer a&ntilde;o). '+
+    'Es una aproximaci&oacute;n que replica la l&oacute;gica de la calculadora de Taxfix; no sustituye al asesoramiento fiscal personalizado.';
+
+  ['income','expenses','salary'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+  document.querySelectorAll('input[name="status"]').forEach(r=>r.addEventListener('change',render));
+  render();
+})();
+</script>
+</body>
+</html>

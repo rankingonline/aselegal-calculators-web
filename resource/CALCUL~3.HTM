@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de la cuota de autónomo 2026</title>
+<style>
+  :root{
+    --bg:#fff; --panel:#f4f1ea; --green:#e9f5d0; --greenDark:#2f6b2f;
+    --text:#1a1a1a; --muted:#6b6b6b; --border:#d8d4c8;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); margin:0; padding:24px; line-height:1.5;}
+  .wrap{max-width:920px; margin:0 auto;}
+  h1{font-size:24px; font-weight:600; margin:0 0 4px;}
+  .sub{color:var(--muted); font-size:14px; margin:0 0 24px; max-width:720px;}
+  .top{display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start;}
+  @media(max-width:760px){.top{grid-template-columns:1fr;}}
+  .panel{background:var(--panel); border-radius:16px; padding:22px;}
+  .panel h2{font-size:18px; font-weight:600; margin:0 0 14px;}
+  .qlabel{font-size:13px; font-weight:600; color:var(--text); margin:0 0 8px;}
+  .radios{display:flex; flex-direction:column; gap:9px; margin-bottom:18px;}
+  .radios.inline{flex-direction:row; gap:18px;}
+  .radios label{display:flex; align-items:flex-start; gap:9px; font-size:14px; cursor:pointer;}
+  .radios input{margin-top:3px;}
+  .block{border-top:1px solid var(--border); padding-top:16px; margin-top:4px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block; font-size:13px; color:var(--muted); margin-bottom:5px;}
+  .inwrap{position:relative;}
+  .inwrap input{width:100%; padding:9px 28px 9px 12px; font-size:15px; border:1px solid var(--border); border-radius:8px; background:#fff; color:var(--text);}
+  .inwrap .eur{position:absolute; right:11px; top:9px; color:var(--muted); font-size:14px;}
+  .field input:focus{outline:none; border-color:var(--greenDark);}
+  .result{background:var(--green);}
+  .rline{padding:10px 0; border-bottom:1px solid rgba(0,0,0,.06);}
+  .rline:last-of-type{border-bottom:none;}
+  .rline .lbl{font-size:13px; color:var(--muted);}
+  .rline .val{font-size:30px; font-weight:600; margin-top:2px;}
+  .msg{margin-top:14px; font-size:13px; color:#2c5a16; background:#d9efb8; padding:10px 12px; border-radius:10px;}
+  .note{font-size:12px; color:var(--muted); margin:22px 0 0; line-height:1.6;}
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Calculadora de la cuota de autónomo</h1>
+  <p class="sub">Averigua tu cuota mensual a la Seguridad Social con los tramos de cotización vigentes. La calculadora resta a tus ingresos los gastos de difícil justificación, así que no hace falta que los cuentes.</p>
+
+  <div class="top">
+    <div class="panel">
+      <h2>Tu situación</h2>
+      <p class="qlabel">¿Has sido autónomo/a antes?</p>
+      <div class="radios">
+        <label><input type="radio" name="status" value="none" checked> Nunca he sido autónomo antes</label>
+        <label><input type="radio" name="status" value="moreThan"> Hace más de dos años que me di de baja</label>
+        <label><input type="radio" name="status" value="lessThan"> Hace menos de dos años que me di de baja</label>
+        <label><input type="radio" name="status" value="registered"> Actualmente estoy dado/a de alta como autónomo/a</label>
+        <label><input type="radio" name="status" value="societario"> Soy autónomo/a societario/a</label>
+      </div>
+
+      <div id="qBefore" class="block hidden">
+        <p class="qlabel">¿Has disfrutado antes del beneficio de la tarifa plana?</p>
+        <div class="radios inline">
+          <label><input type="radio" name="qBefore" value="no" checked> No</label>
+          <label><input type="radio" name="qBefore" value="yes"> Sí</label>
+        </div>
+      </div>
+
+      <div id="q3yr" class="block hidden">
+        <p class="qlabel">¿Hace más de tres años que te diste de baja del régimen de autónomos?</p>
+        <div class="radios inline">
+          <label><input type="radio" name="q3yr" value="no" checked> No</label>
+          <label><input type="radio" name="q3yr" value="yes"> Sí</label>
+        </div>
+      </div>
+
+      <div id="qNow" class="block hidden">
+        <p class="qlabel">¿Estás actualmente disfrutando de la tarifa plana?</p>
+        <div class="radios inline">
+          <label><input type="radio" name="qNow" value="no" checked> No</label>
+          <label><input type="radio" name="qNow" value="yes"> Sí</label>
+        </div>
+      </div>
+
+      <div class="block">
+        <div id="fieldIncome" class="field">
+          <label id="incomeLabel">Ingresos brutos mensuales</label>
+          <div class="inwrap"><input type="number" id="income" value="1500" min="0" step="100"><span class="eur">€</span></div>
+        </div>
+        <div id="fieldExpense" class="field hidden">
+          <label>Gastos deducibles mensuales</label>
+          <div class="inwrap"><input type="number" id="expense" value="300" min="0" step="50"><span class="eur">€</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel result">
+      <h2>Resultado</h2>
+      <div id="resultBody"></div>
+      <div class="msg" id="msg"></div>
+    </div>
+  </div>
+
+  <p class="note" id="legalnote"></p>
+</div>
+
+<script>
+(function(){
+  const RETA=[[670,205],[900,225],[1166.7,266],[1300,298],[1500,301],[1700,301],[1850,359],[2030,379],[2330,400],[2760,425],[3190,451],[3620,477],[4050,502],[6000,543],[Infinity,605]];
+  const SMI_MONTH=1184, SOC_FLOOR=300, TP=80;
+  function reta(m){ for(const[hi,c]of RETA) if(m<=hi) return c; return 605; }
+  const eur=x=>Math.round(x).toLocaleString('es-ES')+'€';
+  const val=id=>+document.getElementById(id).value||0;
+  const radioVal=name=>{const el=document.querySelector('input[name="'+name+'"]:checked');return el?el.value:null;};
+
+  function render(){
+    const st=radioVal('status');
+    const askBefore=(st==='moreThan');
+    const ask3yr=(st==='moreThan' && radioVal('qBefore')==='yes');
+    const askNow=(st==='registered'||st==='societario');
+    document.getElementById('qBefore').classList.toggle('hidden',!askBefore);
+    document.getElementById('q3yr').classList.toggle('hidden',!ask3yr);
+    document.getElementById('qNow').classList.toggle('hidden',!askNow);
+
+    // Determine tarifa plana eligibility
+    let tarifaPlana=false;
+    if(st==='none') tarifaPlana=true;
+    else if(st==='moreThan') tarifaPlana=(radioVal('qBefore')==='no') || (radioVal('qBefore')==='yes' && radioVal('q3yr')==='yes');
+    else if(st==='registered'||st==='societario') tarifaPlana=(radioVal('qNow')==='yes');
+
+    // In tarifa plana mode: only income, factor 0.93, no floor.
+    // In table mode: income - expense, factor (societario 0.95 else 0.93), societario floor.
+    document.getElementById('fieldExpense').classList.toggle('hidden',tarifaPlana);
+    document.getElementById('incomeLabel').textContent = tarifaPlana
+      ? 'Ingresos netos mensuales (segundo año)' : 'Ingresos brutos mensuales';
+
+    const inc=val('income');
+    let body='', msg='';
+    if(tarifaPlana){
+      const y2=reta(inc*0.93);
+      body='<div class="rline"><div class="lbl">Cuota mensual · primeros 12 meses</div><div class="val">'+eur(TP)+'</div></div>'+
+           '<div class="rline"><div class="lbl">Cuota mensual · segundo año</div><div class="val">'+eur(y2)+'</div></div>';
+      msg='¡Tienes derecho a la tarifa plana! Pagarás '+eur(TP)+'/mes el primer año. El segundo año seguirás pagando '+eur(TP)+' si tus rendimientos netos mensuales no superan el SMI (~'+eur(SMI_MONTH)+'); en caso contrario, la cuota será la calculada arriba.';
+    } else {
+      const exp=val('expense');
+      const factor=(st==='societario')?0.95:0.93;
+      let c=reta(Math.max(inc-exp,0)*factor);
+      if(st==='societario') c=Math.max(c,SOC_FLOOR);
+      body='<div class="rline"><div class="lbl">Cuota mensual</div><div class="val">'+eur(c)+'</div></div>';
+      if(st==='lessThan') msg='Como no han pasado más de dos años desde tu baja, no puedes acceder a la tarifa plana. Tu cuota se calcula a partir de tus rendimientos netos estimados.';
+      else if(st==='moreThan') msg='Como no han pasado más de tres años desde que disfrutaste de la tarifa plana, no puedes acceder de nuevo a ella. Tu cuota se calcula a partir de tus rendimientos netos estimados.';
+      else if(st==='registered') msg='Tu cuota se calcula a partir de tus rendimientos netos estimados (ingresos brutos menos gastos deducibles).';
+      else msg='Como autónomo societario, tu cuota tiene una base mínima superior: nunca bajará de '+eur(SOC_FLOOR)+'/mes.';
+    }
+    document.getElementById('resultBody').innerHTML=body;
+    document.getElementById('msg').innerHTML=msg;
+  }
+
+  document.getElementById('legalnote').innerHTML=
+    'C&oacute;mo se calcula: la Seguridad Social asigna una cuota seg&uacute;n tu <b>rendimiento neto mensual</b>, que se obtiene restando a los ingresos un 7% por gastos de dif&iacute;cil justificaci&oacute;n (5% para societarios). Ese rendimiento cae en uno de los 15 tramos de cotizaci&oacute;n (de 205&euro; a 605&euro;/mes). La tarifa plana (80&euro;/mes el primer a&ntilde;o) est&aacute; disponible para nuevos autónomos, para quienes llevan m&aacute;s de dos a&ntilde;os de baja y no la han usado antes, o para quienes la est&aacute;n disfrutando ahora mismo. Los societarios cotizan sobre una base m&iacute;nima mayor (cuota m&iacute;nima de 300&euro;). Resultado orientativo &mdash; replica la l&oacute;gica de la calculadora de Taxfix.';
+
+  ['income','expense'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+  ['status','qBefore','q3yr','qNow'].forEach(n=>document.querySelectorAll('input[name="'+n+'"]').forEach(r=>r.addEventListener('change',render)));
+  render();
+})();
+</script>
+</body>
+</html>

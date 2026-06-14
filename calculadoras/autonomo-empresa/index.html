@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Autónomo o SL? Calcula qué te conviene | Aselegal</title>
+  <meta name="description" content="Compara autónomo vs sociedad limitada según tu facturación. Tabla comparativa, ejemplos numéricos y calculadora gratuita. Aselegal, asesoría fiscal en Sevilla.">
+  <link rel="canonical" href="https://aselegal.com/calculadoras/autonomo-empresa/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Aselegal">
+  <meta property="og:title" content="¿Autónomo o SL? Calcula qué te conviene | Aselegal">
+  <meta property="og:description" content="Compara autónomo vs sociedad limitada según tu facturación. Tabla comparativa, ejemplos numéricos y calculadora gratuita. Aselegal, asesoría fiscal en Sevilla.">
+  <meta property="og:url" content="https://aselegal.com/calculadoras/autonomo-empresa/">
+  <meta property="og:image" content="https://aselegal.com/calculadoras/assets/logo/logo-aselegal.png">
+
+  <link rel="icon" href="../assets/logo/logo-aselegal.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <script defer src="../js/ui.js"></script>
+  <script defer src="../js/calc-autonomo-sl.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://aselegal.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculadoras", "item": "https://aselegal.com/calculadoras/" },
+      { "@type": "ListItem", "position": 3, "name": "Calculadora autónomo o SL", "item": "https://aselegal.com/calculadoras/autonomo-empresa/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿A partir de cuánto beneficio compensa una SL?", "acceptedAnswer": { "@type": "Answer", "text": "La referencia habitual está en torno a los 40.000-50.000 euros de beneficio neto anual. Por encima de esa cifra, la diferencia entre el IRPF (que puede llegar al 45-47%) y el Impuesto sobre Sociedades (25% general, 23% para pymes) empieza a ser material. Pero el punto exacto depende de tu situación: los gastos de mantenimiento de la SL, cómo te retribuyes dentro de ella y si tienes cargas familiares que reducen tu IRPF. La calculadora da una primera orientación, y en Aselegal hacemos el cálculo fino para tu caso." } },
+      { "@type": "Question", "name": "¿Cuánto cuesta constituir una SL?", "acceptedAnswer": { "@type": "Answer", "text": "El coste de constitución incluye la escritura pública ante notario, la inscripción en el Registro Mercantil y los honorarios de la asesoría que gestione el trámite. En total, entre 300 y 1.500 euros según la complejidad. A eso hay que sumar el capital social mínimo, que desde 2023 puede ser de 1 euro (aunque lo habitual es aportar algo más para dar imagen ante bancos y clientes). El coste de mantenimiento anual (contabilidad, IS, depósito de cuentas) es el que más pesa a largo plazo." } },
+      { "@type": "Question", "name": "¿Puedo pasar de autónomo a SL sin perder mis contratos?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, pero hay que hacerlo con orden. Los contratos con clientes y proveedores deben renegociarse o cederse a la nueva sociedad. Las licencias, si las hay, suelen ir vinculadas a la persona física y hay que tramitar el cambio. Los activos (equipos, vehículos, existencias) se traspasan mediante aportación no dineraria o compraventa a precio de mercado. Lo gestionamos nosotros para que no haya discontinuidad en tu actividad." } },
+      { "@type": "Question", "name": "¿Puedo ser autónomo y tener una SL al mismo tiempo?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Hay profesionales que mantienen actividad como autónomos en un área y tienen una SL para otra línea de negocio. También es posible ser socio de una SL sin ser el administrador, sin cotizar en el RETA. La combinación correcta depende de qué actividades haces y cómo quieres estructurar la tributación del conjunto." } },
+      { "@type": "Question", "name": "¿El socio de una SL tiene que darse de alta como autónomo?", "acceptedAnswer": { "@type": "Answer", "text": "Depende. El socio que trabaja en la sociedad y tiene una participación significativa (en general, más del 25% o del 33% si tiene control efectivo) debe darse de alta en el RETA como autónomo societario. El socio minoritario que no trabaja en la sociedad no tiene esa obligación. Las reglas son específicas y vale la pena revisarlas antes de firmar los estatutos, porque pueden condicionar la estructura óptima." } },
+      { "@type": "Question", "name": "¿Qué pasa si constituyo la SL y luego no funciona?", "acceptedAnswer": { "@type": "Answer", "text": "Una SL puede disolverse y liquidarse. El proceso tiene costes (notaría, Registro, asesoría) y puede durar varios meses si hay activos que liquidar o deudas que saldar. Si todo está en orden, es un trámite gestionable. La responsabilidad del socio queda limitada al capital aportado, salvo casos de administración negligente o deudas con Hacienda y la Seguridad Social, que sí pueden exigirse personalmente al administrador." } },
+      { "@type": "Question", "name": "¿Aselegal gestiona tanto la parte fiscal como la constitución de la SL?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Tenemos equipo fiscal, mercantil y laboral propio. No subcontratamos ningún área. Desde el análisis inicial de si la SL te conviene hasta la constitución, el alta como socio-trabajador, la contabilidad mensual y el Impuesto sobre Sociedades anual: lo gestionamos todo en el mismo despacho." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="https://aselegal.com/" aria-label="Aselegal — Inicio">
+        <img src="../assets/logo/logo-aselegal.svg" width="180" height="60" alt="Aselegal Consultores">
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="https://aselegal.com/">Inicio</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/nosotros/">Nosotros</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/servicios/">Servicios</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/tutoriales/">Tutoriales</a></li>
+          <li><a class="site-nav__link" href="https://ASELEGAL.portaldespacho.com/acceso/frame">Portal del Asesor</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/blog/">Blog</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/contacto/">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <span class="lang-switch" aria-label="Selector de idioma">
+          <a href="https://aselegal.com/en/" hreflang="en">EN</a><span>·</span><a href="#" hreflang="es" aria-current="true">ES</a>
+        </span>
+        <a class="btn btn--primary" href="https://aselegal.com/contacto/">Contacto</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Breadcrumb ===== -->
+    <nav class="container breadcrumb" aria-label="Migas de pan">
+      <ol>
+        <li><a href="https://aselegal.com/">Inicio</a></li>
+        <li><a href="../index.html">Calculadoras</a></li>
+        <li><span aria-current="page">Calculadora autónomo o SL</span></li>
+      </ol>
+    </nav>
+
+    <!-- ===== Hero / intro ===== -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="prose">
+          <h1 class="hero__title">¿Autónomo o SL? Calcula qué te conviene según tu facturación</h1>
+          <p class="hero__lead">Es una de las preguntas que más escuchamos en el despacho. Y tiene trampa, porque la respuesta correcta no es la misma para todo el mundo ni para toda la vida.</p>
+          <p class="mt-6"><a class="btn btn--primary btn--lg" href="https://aselegal.com/contacto/">Consulta con Aselegal</a></p>
+        </div>
+        <figure class="media-shot hero__media">
+          <img src="../assets/img/placeholder.jpg" width="1200" height="800" alt="Asesoría mercantil de Aselegal para constituir una SL (imagen de ejemplo)">
+          <figcaption class="media-shot__tag">Imagen de ejemplo</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== Intro ===== -->
+    <section class="section section--tight section--blue">
+      <div class="container">
+        <div class="prose">
+          <p>Ser autónomo es más sencillo y más barato de mantener. Pero tributas por el IRPF, que tiene tramos que llegan al 47%. A partir de cierto nivel de beneficio, eso duele. Una sociedad limitada tributa por el Impuesto sobre Sociedades —tipo general del 25%, o el 23% si facturas menos de un millón de euros—, lo que puede suponer un ahorro real de varios miles de euros al año. Pero tiene más costes fijos, más obligaciones contables y más complejidad.</p>
+          <p>El punto de cruce suele estar en torno a los 40.000-50.000 euros de beneficio neto anual. Por encima de esa cifra, una SL bien gestionada casi siempre sale mejor. Por debajo, los gastos de mantenimiento pueden comerse el ahorro fiscal.</p>
+          <p>Esta calculadora te da una primera orientación con los números de tu caso. Si el resultado genera dudas o quieres un análisis detallado antes de tomar la decisión, en Aselegal lo hacemos contigo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Calculadora ===== -->
+    <section class="section section--calc">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <h2>Calculadora: ¿autónomo o SL?</h2>
+          <p class="section__lead">Introduce tu beneficio neto anual estimado (ingresos menos gastos, antes de impuestos). La calculadora compara la carga fiscal en cada estructura y te muestra en cuál te quedas con más dinero neto.</p>
+        </div>
+
+        <div class="calc" id="calc-autonomo-sl">
+          <form class="calc__form" aria-label="Datos para comparar autonomo y SL" onsubmit="return false">
+            <div class="calc__field">
+              <label class="calc__label" for="as-beneficio">Beneficio neto anual estimado</label>
+              <div class="calc__input-wrap">
+                <input class="calc__input" id="as-beneficio" type="number" inputmode="numeric" min="0" step="1000" value="50000">
+                <span class="unit" aria-hidden="true">€</span>
+              </div>
+              <p class="calc__hint">Ingresos menos gastos, antes de impuestos.</p>
+            </div>
+            <div class="calc__field">
+              <label class="calc__radio" for="as-factura-1m"><input type="checkbox" id="as-factura-1m"><span>Mi facturacion supera 1 M€ al ano (IS al 25 %)</span></label>
+            </div>
+          </form>
+          <div class="calc__result" aria-live="polite">
+            <span class="calc__result-head">Comparativa fiscal: neto tras impuestos</span>
+            <div class="calc__compare">
+              <div class="calc__opt as-opt-auto">
+                <div class="calc__opt-head"><span class="calc__opt-name">Autónomo (IRPF)</span><span class="calc__opt-badge"></span></div>
+                <span class="calc__opt-value" id="as-auto-neto">—</span>
+                <span class="calc__opt-meta" id="as-auto-meta">—</span>
+              </div>
+              <div class="calc__opt as-opt-sl">
+                <div class="calc__opt-head"><span class="calc__opt-name">Sociedad Limitada (IS)</span><span class="calc__opt-badge"></span></div>
+                <span class="calc__opt-value" id="as-sl-neto">—</span>
+                <span class="calc__opt-meta" id="as-sl-meta">—</span>
+              </div>
+            </div>
+            <p class="calc__msg" id="as-msg">—</p>
+          </div>
+        </div>
+
+        <p class="calc-intro__note">Nota: los resultados son orientativos. Se basan en los tipos impositivos vigentes para 2025 (IRPF estatal + autonómico de Andalucía, IS tipo reducido para pymes). No incluyen el coste de constitución y mantenimiento de la SL ni la cotización del socio-trabajador, que dependen de cada caso. Para un análisis completo, consúltanos.</p>
+      </div>
+    </section>
+
+    <!-- ===== Comparativa completa ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>Autónomo vs SL: comparativa completa</h2>
+          <p class="section__lead">Antes de mirar solo el impuesto, conviene ver la foto completa. Estos son los factores que más pesan en la decisión:</p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Aspecto</th><th scope="col">Autónomo (IRPF)</th><th scope="col">Sociedad Limitada (IS)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Tributación del beneficio</strong></td><td>IRPF: tramos del 19% al 47%</td><td>IS: tipo general 25% (23% pymes &lt;1M€ facturación)</td></tr>
+              <tr><td><strong>Cuota Seguridad Social</strong></td><td>Cuota RETA según ingresos (min. ~200 €/mes)</td><td>Cotización como socio-trabajador en RETA o Régimen General</td></tr>
+              <tr><td><strong>Responsabilidad patrimonial</strong></td><td>Ilimitada: responde con su patrimonio personal</td><td>Limitada al capital social aportado (mín. 1 €)</td></tr>
+              <tr><td><strong>Coste de constitución</strong></td><td>Alta en Hacienda y SS: gratuita</td><td>Notaría, Registro Mercantil, gestoría: 300–1.500 €</td></tr>
+              <tr><td><strong>Obligaciones contables</strong></td><td>Libro de ingresos y gastos (estimación directa)</td><td>Contabilidad completa, cuentas anuales, auditoría opcional</td></tr>
+              <tr><td><strong>Gastos deducibles</strong></td><td>Gastos de la actividad (con límites)</td><td>Gastos empresariales más amplios, incluido sueldo del socio</td></tr>
+              <tr><td><strong>Retribución del socio</strong></td><td>Todos los beneficios van al IRPF del autónomo</td><td>Sueldo (IRPF) + dividendos (19–28%) o retención de beneficios</td></tr>
+              <tr><td><strong>Acceso a financiación</strong></td><td>Más difícil: sin estructura societaria</td><td>Más fácil: la SL puede tener socios, inversores, deuda corporativa</td></tr>
+              <tr><td><strong>Imagen ante clientes</strong></td><td>Adecuada para profesionales y servicios</td><td>Más valorada en sectores B2B y contratos de mayor volumen</td></tr>
+              <tr><td><strong>Complejidad de gestión</strong></td><td>Baja: modelos trimestrales + renta anual</td><td>Alta: contabilidad mensual, IS anual, libros de actas, cuentas anuales</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cuánto te ahorras ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2>Cuánto te ahorras según tu nivel de beneficio</h2>
+          <p class="section__lead">Los números cambian mucho según lo que ganas. Aquí tienes tres escenarios reales para ver en qué punto empieza a compensar la SL:</p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Beneficio neto anual</th><th scope="col">Estructura</th><th scope="col">Impuesto aprox.</th><th scope="col">Neto aproximado tras impuestos</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="num">30.000 €</td><td>Autónomo</td><td>IRPF ~6.500 €</td><td class="num">≈ 23.500 €</td></tr>
+              <tr><td class="num">30.000 €</td><td>SL (sueldo 30k)</td><td>IRPF ~6.500 €</td><td class="num">≈ 23.500 € (similar, más gastos fijos)</td></tr>
+              <tr><td class="num">50.000 €</td><td>Autónomo</td><td>IRPF ~15.500 €</td><td class="num">≈ 34.500 €</td></tr>
+              <tr class="is-highlight"><td class="num">50.000 €</td><td>SL (sueldo 40k + dividendos 10k)</td><td>IRPF + IS ~11.500 €</td><td class="num"><strong>≈ 38.500 € (ahorro ≈ 4.000 €)</strong></td></tr>
+              <tr><td class="num">80.000 €</td><td>Autónomo</td><td>IRPF ~29.000 €</td><td class="num">≈ 51.000 €</td></tr>
+              <tr class="is-highlight"><td class="num">80.000 €</td><td>SL (sueldo 45k + retención IS)</td><td>IRPF + IS ~20.000 €</td><td class="num"><strong>≈ 60.000 € (ahorro ≈ 9.000 €)</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="calc__note"><em>Ejemplos orientativos para un trabajador sin cargas familiares en Andalucía, 2025. Los importes reales dependen de la retribución elegida como socio, los gastos deducibles en cada estructura y la optimización fiscal del conjunto. Para calcular tu caso concreto, consúltanos.</em></p>
+        <p class="mt-6"><a class="btn btn--secondary btn--lg" href="https://aselegal.com/contacto/">Habla con nuestro equipo</a></p>
+      </div>
+    </section>
+
+    <!-- ===== Para qué situaciones es útil ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>Para qué situaciones es útil esta calculadora</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Situación</th><th scope="col">Qué muestra la calculadora</th><th scope="col">Para qué sirve</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Llevas años como autónomo y tu facturación ha crecido</td><td>A partir de qué beneficio sale mejor una SL</td><td>Decidir si es momento de constituir la sociedad</td></tr>
+              <tr><td>Estás empezando y no sabes qué estructura elegir</td><td>Cuál es más eficiente con los ingresos que esperas</td><td>Arrancar con la estructura correcta desde el primer día</td></tr>
+              <tr><td>Tienes socios y queréis formalizar la relación</td><td>Qué implica fiscalmente operar como SL</td><td>Entender el impacto antes de firmar en notaría</td></tr>
+              <tr><td>Ya tienes una SL y te preguntas si sigue siendo óptima</td><td>Si tu retribución actual como socio es eficiente</td><td>Optimizar cómo te retribuyes dentro de tu propia empresa</td></tr>
+              <tr><td>Tu cliente o banco te pide una SL</td><td>Diferencia real de imagen y acceso a financiación</td><td>Justificar o descartar el cambio de estructura</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Grid de decisión (2×2) ===== -->
+    <div class="decisions-wrap">
+      <div class="decisions-grid">
+
+        <!-- Row 1 Left: Cómo funciona la decisión (blue) -->
+        <div class="decisions-cell decisions-cell--blue">
+          <div class="prose">
+            <h2>Cómo funciona la decisión: los tres factores que mandan</h2>
+            <h3>1. El beneficio neto, no la facturación</h3>
+            <p>El error más frecuente es mirar la facturación bruta. Lo que importa es el beneficio neto: lo que queda después de descontar todos los gastos de la actividad. Un autónomo que factura 80.000 euros pero tiene 50.000 de gastos reales tiene 30.000 de beneficio —y con eso, la SL posiblemente no compensa todavía.</p>
+            <h3>2. El coste real de mantener una SL</h3>
+            <p>Constituir una SL tiene un coste de partida (notaría, Registro Mercantil, asesoría: entre 300 y 1.500 euros según el caso). Pero el coste recurrente importa más: contabilidad mensual, presentación del Impuesto sobre Sociedades, depósito de cuentas anuales, libros de actas. En Aselegal eso tiene un coste fijo mensual que conviene conocer antes de decidir.</p>
+            <h3>3. Cómo te retribuyes dentro de la SL</h3>
+            <p>En una SL, el socio puede retribuirse de varias formas: sueldo como trabajador (que tributa por IRPF), dividendos (que tributan al 19-28%), o dejando beneficios en la sociedad para reinvertir (tributan al 25% de IS pero no generan IRPF personal en ese momento). La combinación óptima depende de cuánto necesitas sacar para vivir y cuánto puedes dejar dentro.</p>
+          </div>
+        </div>
+
+        <!-- Row 1 Right: Cómo te ayudamos (navy) -->
+        <div class="decisions-cell decisions-cell--navy">
+          <div class="prose">
+            <h2>Cómo te ayudamos a constituir la SL</h2>
+            <p>Si la calculadora o el análisis con nuestro equipo te convence de dar el paso, en Aselegal gestionamos la constitución de principio a fin:</p>
+            <ul>
+              <li>Elaboración de los estatutos sociales adaptados a tu actividad y a la relación entre socios si los hay.</li>
+              <li>Escritura pública ante notario: te acompañamos o lo gestionamos con tu poder notarial.</li>
+              <li>Inscripción en el Registro Mercantil y alta en Hacienda (NIF provisional y definitivo).</li>
+              <li>Alta en la Seguridad Social como socio-trabajador y, si aplica, como empleador.</li>
+              <li>Apertura de la cuenta bancaria de la sociedad y depósito del capital social.</li>
+              <li>Traspaso de contratos, licencias y activos desde el autónomo a la SL si ya tienes actividad.</li>
+            </ul>
+            <p>Todo el proceso dura habitualmente entre dos y cuatro semanas desde que tomamos la decisión.</p>
+          </div>
+        </div>
+
+        <!-- Row 2 Left: ¿Cuándo autónomo? (navy) -->
+        <div class="decisions-cell decisions-cell--navy">
+          <div class="prose">
+            <h2>¿Cuándo conviene seguir como autónomo?</h2>
+            <p>Si tu beneficio neto anual está por debajo de 40.000 euros, en la mayoría de los casos el ahorro fiscal de la SL no compensa los costes de constitución y mantenimiento. La excepción: si necesitas limitar tu responsabilidad patrimonial (actividades con riesgo real de reclamaciones) o si tus clientes o tu banco te lo exigen.</p>
+            <p>Si acabas de empezar, si estás en la fase de validar el negocio o si tus ingresos son todavía irregulares, el autónomo es casi siempre la mejor opción para arrancar. Cambias de estructura cuando los números lo justifican.</p>
+          </div>
+        </div>
+
+        <!-- Row 2 Right: ¿Cuándo SL? (blue) -->
+        <div class="decisions-cell decisions-cell--blue">
+          <div class="prose">
+            <h2>¿Cuándo conviene constituir una SL?</h2>
+            <p>Cuando tu beneficio neto supera de forma estable los 40.000-50.000 euros anuales. A partir de ahí, la diferencia entre tributar al 45-47% en IRPF y al 23-25% en IS empieza a ser material.</p>
+            <p>También cuando vas a tener socios, cuando buscas financiación externa, cuando tus clientes principales son grandes empresas que prefieren contratar con personas jurídicas, o cuando quieres separar el patrimonio personal del empresarial.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== Por qué Aselegal ===== -->
+    <section class="section section--why">
+      <div class="container">
+        <div class="section__head"><h2>Por qué Aselegal</h2><p class="section__lead">Despacho de asesoría en Sevilla con historia real en la ciudad — fiscal, laboral y jurídico en el mismo sitio.</p></div>
+        <div class="why__grid">
+          <div class="why__item">
+            <span class="why__metric">3<small>áreas</small></span>
+            <h3 class="why__item-title">Fiscal, mercantil y laboral</h3>
+            <p>La decisión de autónomo o SL cruza tres áreas: fiscalidad, derecho mercantil y cotizaciones laborales. En Aselegal no subcontratamos ninguna. Tienes un solo equipo que ve el conjunto y no te da una respuesta parcial.</p>
+          </div>
+          <div class="why__item">
+            <span class="why__metric">30<small>años</small></span>
+            <h3 class="why__item-title">Acompañando empresas en Sevilla</h3>
+            <p>Llevamos tres décadas viendo cómo evolucionan los negocios en la ciudad. Sabemos cuándo una estructura se queda pequeña y cuándo el cambio se hace por moda sin que los números lo justifiquen.</p>
+          </div>
+          <div class="why__item">
+            <span class="why__metric">24h<small>máximo</small></span>
+            <h3 class="why__item-title">Respondemos el mismo día</h3>
+            <p>Si tienes la duda ahora, no la dejes para el próximo trimestre. Llamada que entra, respuesta de vuelta. Y si la decisión necesita análisis, te damos una primera orientación en la misma conversación.</p>
+          </div>
+          <div class="why__item">
+            <span class="why__metric">€0<small>ocultos</small></span>
+            <h3 class="why__item-title">Transparencia de costes</h3>
+            <p>Antes de recomendar constituir una SL, te decimos exactamente cuánto te va a costar mantenerla con nosotros. No tiene sentido ahorrarte 3.000 euros de IRPF si la asesoría te cuesta 3.500 más que ahora.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Para quién es / no es ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="audience audience--media">
+          <figure class="audience__img">
+            <img src="../assets/img/placeholder.jpg" alt="Asesoría mercantil en Aselegal para constituir una SL (imagen de ejemplo)" loading="lazy">
+          </figure>
+          <div class="audience__content">
+            <div class="audience__card">
+              <h3>Para quién es esta calculadora</h3>
+              <ul class="audience__list">
+                <li><span class="tick" aria-hidden="true">✓</span><span>Es útil si eres autónomo con varios años de actividad y quieres saber si ha llegado el momento de dar el paso a sociedad limitada.</span></li>
+                <li><span class="tick" aria-hidden="true">✓</span><span>Es útil si estás a punto de arrancar un negocio y quieres elegir desde el primer día la estructura que más te conviene según lo que esperas ganar.</span></li>
+                <li><span class="tick" aria-hidden="true">✓</span><span>Es útil si tienes ya una SL y quieres revisar si la forma en que te retribuyes dentro de ella sigue siendo óptima.</span></li>
+              </ul>
+            </div>
+            <div class="audience__card">
+              <h3>Para quién no es esta calculadora</h3>
+              <ul class="audience__list">
+                <li><span class="cross" aria-hidden="true">✕</span><span>No es un sustituto del análisis personalizado si tu situación tiene particularidades: varios socios con participaciones distintas, actividades reguladas (sanitarias, jurídicas, educativas), operaciones con inmuebles, grupos de sociedades o negocios con pérdidas que quieres compensar. En esos casos el cálculo tiene capas que la calculadora no recoge. Consúltanos antes de tomar la decisión.</span></li>
+              </ul>
+              <p class="mt-6"><a class="btn btn--primary" href="https://aselegal.com/contacto/">Consulta a un experto</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Servicios relacionados ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <h2>Servicios relacionados en Aselegal</h2>
+          <p class="section__lead">Si la calculadora te ha convencido de dar el paso o simplemente quieres analizarlo con calma, estos son los servicios más consultados desde esta página:</p>
+        </div>
+        <div class="services-split">
+          <div class="services">
+            <div class="service-link"><p>• <strong>Emprendimiento y constitución de empresa:</strong> si la calculadora de autónomo o SL te ha dado que es momento de dar el salto, te acompañamos. <a href="https://aselegal.com/servicios/emprendimiento/">Más información aquí.</a></p></div>
+            <div class="service-link"><p>• <strong>Asesoría mercantil para empresas:</strong> libros de actas, cuentas anuales, depósito en el Registro Mercantil, modificaciones estatutarias y ampliaciones de capital. <a href="https://aselegal.com/servicios/derecho-mercantil/">Más información aquí.</a></p></div>
+            <div class="service-link"><p>• <strong>Asesoría fiscal para empresas:</strong> Impuesto sobre Sociedades, IVA, planificación fiscal anual y optimización de la retribución del socio. <a href="https://aselegal.com/servicios/asesoria-fiscal/">Más información aquí.</a></p></div>
+          </div>
+          <figure class="services__media">
+            <img src="../assets/img/placeholder.jpg" alt="Asesoría para empresas en Aselegal, Sevilla" loading="lazy">
+          </figure>
+        </div>
+        <p class="mt-6 text-center"><a class="btn-link" href="../sueldo-neto/index.html">¿Trabajas por cuenta ajena? Calcula tu sueldo neto <span class="arrow" aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+
+    <!-- ===== Reviews ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head section__head--center"><h2>Lo que dicen nuestros clientes</h2></div>
+        <div class="reviews">
+          <div class="reviews__head">
+            <div class="reviews__google-badge">
+              <div class="reviews__google-top">
+                <svg class="reviews__google-icon" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z" fill="#4285f4"/><path d="M272.1 544.3c73.4 0 135.3-24.1 180.4-65.7l-87.7-68c-24.4 16.6-55.9 26-92.6 26-71 0-131.2-47.9-152.8-112.3H28.9v70.1c46.2 91.9 140.3 149.9 243.2 149.9z" fill="#34a853"/><path d="M119.3 324.3c-11.4-33.8-11.4-70.4 0-104.2V150H28.9c-38.6 76.9-38.6 167.5 0 244.4l90.4-70.1z" fill="#fbbc04"/><path d="M272.1 107.7c38.8-.6 76.3 14 104.4 40.8l77.7-77.7C405 24.6 339.7-.8 272.1 0 169.2 0 75.1 58 28.9 150l90.4 70.1c21.5-64.5 81.8-112.4 152.8-112.4z" fill="#ea4335"/></svg>
+                <span class="reviews__google-wordmark">Google</span>
+              </div>
+              <div class="reviews__score-row">
+                <span class="reviews__score" aria-hidden="true">4,9</span>
+                <div>
+                  <div class="reviews__stars" aria-hidden="true">★★★★★</div>
+                  <div class="reviews__meta">Basado en reseñas de Google · datos de ejemplo</div>
+                </div>
+              </div>
+            </div>
+            <span class="visually-hidden">Valoración media de 4,9 sobre 5 estrellas, basada en reseñas de ejemplo.</span>
+          </div>
+          <div class="reviews__grid">
+            <article class="review-card">
+              <div class="review-card__top">
+                <span class="review-card__avatar" aria-hidden="true">ML</span>
+                <span class="review-card__who"><span class="review-card__name">María L.</span><span class="review-card__date">hace 2 semanas</span></span>
+              </div>
+              <span class="review-card__stars" aria-hidden="true">★★★★★</span><span class="visually-hidden">5 de 5 estrellas</span>
+              <p class="review-card__text">«Resolví mi alta de autónomo en un día. Me explicaron la cuota y el IRPF sin tecnicismos y respondieron enseguida.»</p>
+            </article>
+            <article class="review-card">
+              <div class="review-card__top">
+                <span class="review-card__avatar" aria-hidden="true">JR</span>
+                <span class="review-card__who"><span class="review-card__name">Javier R.</span><span class="review-card__date">hace 1 mes</span></span>
+              </div>
+              <span class="review-card__stars" aria-hidden="true">★★★★★</span><span class="visually-hidden">5 de 5 estrellas</span>
+              <p class="review-card__text">«Pasé de autónomo a SL con ellos. Transparentes con los costes desde el principio y todo el proceso muy ágil.»</p>
+            </article>
+            <article class="review-card">
+              <div class="review-card__top">
+                <span class="review-card__avatar" aria-hidden="true">LM</span>
+                <span class="review-card__who"><span class="review-card__name">Lucía M.</span><span class="review-card__date">hace 1 mes</span></span>
+              </div>
+              <span class="review-card__stars" aria-hidden="true">★★★★★</span><span class="visually-hidden">5 de 5 estrellas</span>
+              <p class="review-card__text">«Llevo años con Aselegal. Responden el mismo día, de verdad. Da tranquilidad tener todo en el mismo sitio.»</p>
+            </article>
+          </div>
+          <p class="reviews__note">Reseñas de ejemplo (datos ficticios). Se sustituirán por el widget real de Google Reviews de Aselegal en la integración.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contacto ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <h2>Consulta con nuestro equipo</h2>
+          <p class="section__lead">Si tienes una pregunta concreta sobre tu nómina, tu retención de IRPF o el coste de tus trabajadores, escríbenos. Te respondemos hoy.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="map-embed">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.3976431638284!2d-5.9980902!3d37.380427399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c1fa56235f5%3A0x2235ad979449e29c!2sASELEGAL%20%7C%20Asesor%C3%ADa%20en%20Sevilla%20(%20Laboral%20y%20Fiscal).%20Despacho%20Jur%C3%ADdico%20para%20particulares%20y%20empresas.!5e0!3m2!1ses!2sus!4v1781397131867!5m2!1ses!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de ubicación de Aselegal en Plaza de Cuba, Sevilla"></iframe>
+          </div>
+          <form class="contact-form" aria-label="Formulario de contacto (maqueta)" onsubmit="return false">
+            <p class="placeholder__tag" style="align-self:flex-start">Formulario de contacto</p>
+            <div class="form-field"><label for="c-nombre">Nombre</label><input id="c-nombre" type="text" autocomplete="name" placeholder="Tu nombre"></div>
+            <div class="form-field"><label for="c-email">Email</label><input id="c-email" type="email" autocomplete="email" placeholder="tu@email.com"></div>
+            <div class="form-field"><label for="c-msg">Cuéntanos</label><textarea id="c-msg" rows="4" placeholder="¿En qué podemos ayudarte?"></textarea></div>
+            <button class="btn btn--primary btn--block" type="submit">Enviar consulta</button>
+            <p class="calc__note">Maqueta de formulario — se conectará al sistema de contacto de Aselegal en la integración.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head"><h2>Preguntas frecuentes sobre autónomo o SL</h2></div>
+        <div class="faq">
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿A partir de cuánto beneficio compensa una SL?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>La referencia habitual está en torno a los 40.000-50.000 euros de beneficio neto anual. Por encima de esa cifra, la diferencia entre el IRPF (que puede llegar al 45-47%) y el Impuesto sobre Sociedades (25% general, 23% para pymes) empieza a ser material. Pero el punto exacto depende de tu situación: los gastos de mantenimiento de la SL, cómo te retribuyes dentro de ella y si tienes cargas familiares que reducen tu IRPF. La calculadora da una primera orientación, y en Aselegal hacemos el cálculo fino para tu caso.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Cuánto cuesta constituir una SL?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>El coste de constitución incluye la escritura pública ante notario, la inscripción en el Registro Mercantil y los honorarios de la asesoría que gestione el trámite. En total, entre 300 y 1.500 euros según la complejidad. A eso hay que sumar el capital social mínimo, que desde 2023 puede ser de 1 euro (aunque lo habitual es aportar algo más para dar imagen ante bancos y clientes). El coste de mantenimiento anual (contabilidad, IS, depósito de cuentas) es el que más pesa a largo plazo.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Puedo pasar de autónomo a SL sin perder mis contratos?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Sí, pero hay que hacerlo con orden. Los contratos con clientes y proveedores deben renegociarse o cederse a la nueva sociedad. Las licencias, si las hay, suelen ir vinculadas a la persona física y hay que tramitar el cambio. Los activos (equipos, vehículos, existencias) se traspasan mediante aportación no dineraria o compraventa a precio de mercado. Lo gestionamos nosotros para que no haya discontinuidad en tu actividad.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Puedo ser autónomo y tener una SL al mismo tiempo?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Sí. Hay profesionales que mantienen actividad como autónomos en un área y tienen una SL para otra línea de negocio. También es posible ser socio de una SL sin ser el administrador, sin cotizar en el RETA. La combinación correcta depende de qué actividades haces y cómo quieres estructurar la tributación del conjunto.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿El socio de una SL tiene que darse de alta como autónomo?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Depende. El socio que trabaja en la sociedad y tiene una participación significativa (en general, más del 25% o del 33% si tiene control efectivo) debe darse de alta en el RETA como autónomo societario. El socio minoritario que no trabaja en la sociedad no tiene esa obligación. Las reglas son específicas y vale la pena revisarlas antes de firmar los estatutos, porque pueden condicionar la estructura óptima.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Qué pasa si constituyo la SL y luego no funciona?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Una SL puede disolverse y liquidarse. El proceso tiene costes (notaría, Registro, asesoría) y puede durar varios meses si hay activos que liquidar o deudas que saldar. Si todo está en orden, es un trámite gestionable. La responsabilidad del socio queda limitada al capital aportado, salvo casos de administración negligente o deudas con Hacienda y la Seguridad Social, que sí pueden exigirse personalmente al administrador.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Aselegal gestiona tanto la parte fiscal como la constitución de la SL?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Sí. Tenemos equipo fiscal, mercantil y laboral propio. No subcontratamos ningún área. Desde el análisis inicial de si la SL te conviene hasta la constitución, el alta como socio-trabajador, la contabilidad mensual y el Impuesto sobre Sociedades anual: lo gestionamos todo en el mismo despacho.</p></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img src="../assets/logo/logo-aselegal.svg" width="180" height="60" alt="Aselegal Consultores">
+          <p>Asesoría fiscal, laboral, jurídica y mercantil en Sevilla. 30 años en la ciudad, no en una central. Respondemos el mismo día.</p>
+        </div>
+        <nav class="site-footer__col" aria-label="Enlaces de Aselegal">
+          <h3>Aselegal</h3>
+          <ul>
+            <li><a href="https://aselegal.com/">Inicio</a></li>
+            <li><a href="https://aselegal.com/nosotros/">Nosotros</a></li>
+            <li><a href="https://aselegal.com/servicios/">Servicios</a></li>
+            <li><a href="https://aselegal.com/blog/">Blog</a></li>
+            <li><a href="https://aselegal.com/contacto/">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="site-footer__col">
+          <h3>Contacto</h3>
+          <address class="site-footer__contact">
+            <span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-5.686-7-11a7 7 0 1 1 14 0c0 5.314-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Pl. de Cuba, 3 Acc · 41011 Sevilla</span>
+            <span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 18l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg><a href="tel:+34954536434">954 53 64 34</a></span>
+            <span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.8 17.8L3 21l3.3-.8A11 11 0 1 0 20.5 3.5Z"/></svg><a href="https://wa.me/34616312424">WhatsApp 616 312 424</a></span>
+            <span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:info@aselegal.com">info@aselegal.com</a></span>
+          </address>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 Aselegal Consultores. Todos los derechos reservados.</p>
+        <nav aria-label="Enlaces legales">
+          <a href="https://aselegal.com/politica-de-privacidad/">Política de privacidad</a>
+          <a href="https://aselegal.com/aviso-legal/">Aviso legal</a>
+          <a href="https://aselegal.com/politica-de-cookies/">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/34616312424" aria-label="Escríbenos por WhatsApp" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02ZM12.04 20.15a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+  </a>
+</body>
+</html>

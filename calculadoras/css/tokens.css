@@ -1,0 +1,65 @@
+/* =====================================================================
+   Aselegal · Calculadoras — tokens.css
+   Fuente de la verdad visual: /resource/aselegal-design-system.md (§7)
+   No usar hex/px sueltos en los componentes: todo vía estas variables.
+   ===================================================================== */
+
+:root {
+  /* === Color === */
+  --color-blue: #0080B5;
+  --color-blue-dark: #006A96;
+  --color-blue-soft: #E6F2F8;
+  --color-navy: #051D4B;
+  --color-navy-dark: #03143A;
+  --color-ink: #1F2A3C;
+  --color-muted: #5A6B82;
+  --color-line: #DBE1E9;
+  --color-line-strong: #C3CCD9;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F7F7F7;
+  --color-secondary: #DEDEDE;
+  --color-success: #1E8E5A;  --color-success-soft: #E7F4ED;
+  --color-warning: #B26A00;  --color-warning-soft: #FBF1E0;
+  --color-error: #C0392B;    --color-error-soft: #FBEAE8;
+
+  /* === Tipografía === */
+  --font-head: "PT Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --fs-display: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+  --fs-h2: clamp(1.75rem, 1.4rem + 1.6vw, 2.625rem);
+  --fs-h3: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+  --fs-h4: 1.25rem;
+  --fs-lead: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-result: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --lh-tight: 1.15;
+  --lh-base: 1.65;
+
+  /* === Espaciado (base 8px) === */
+  --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
+  --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 4rem;
+  --space-9: 5rem; --space-10: 6rem;
+
+  /* === Layout === */
+  --container-max: 1200px;
+  --container-pad: clamp(1rem, 5vw, 2rem);
+  --prose-max: 720px;
+  --section-pad-y: clamp(3.5rem, 6vw, 6rem);
+  --gap-card: var(--space-5);
+
+  /* === Radios / sombras / bordes === */
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-pill: 999px;
+  --shadow-sm: 0 1px 3px rgba(5,29,75,.08);
+  --shadow-md: 0 8px 24px rgba(5,29,75,.10);
+  --shadow-lg: 0 16px 48px rgba(5,29,75,.14);
+  --border: 1px solid var(--color-line);
+  --border-strong: 1px solid var(--color-line-strong);
+  --focus-ring: 0 0 0 3px rgba(0,128,181,.35);
+
+  /* === Breakpoints (referencia; en media queries se usan literales) === */
+  --bp-sm: 480px; --bp-md: 768px; --bp-lg: 1024px; --bp-xl: 1200px;
+
+  /* === Cabecera fija === */
+  --header-h: 72px;
+}

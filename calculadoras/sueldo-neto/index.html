@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de sueldo neto 2025 | Aselegal</title>
+  <meta name="description" content="Calcula tu sueldo neto 2025: del bruto al neto tras IRPF y Seguridad Social, mensual y anual. Calculadora gratuita de Aselegal, asesoría en Sevilla.">
+  <link rel="canonical" href="https://aselegal.com/calculadoras/sueldo-neto/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Aselegal">
+  <meta property="og:title" content="Calculadora de sueldo neto 2025 | Aselegal">
+  <meta property="og:description" content="Del bruto al neto: descubre cuánto cobras realmente cada mes y cada año tras IRPF y Seguridad Social.">
+  <meta property="og:url" content="https://aselegal.com/calculadoras/sueldo-neto/">
+  <meta property="og:image" content="https://aselegal.com/calculadoras/assets/logo/logo-aselegal.png">
+
+  <link rel="icon" href="../assets/logo/logo-aselegal.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <script defer src="../js/ui.js"></script>
+  <script defer src="../js/calc-sueldo-neto.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://aselegal.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculadoras", "item": "https://aselegal.com/calculadoras/" },
+      { "@type": "ListItem", "position": 3, "name": "Calculadora de sueldo neto", "item": "https://aselegal.com/calculadoras/sueldo-neto/" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿La calculadora es gratuita?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Es de uso libre y gratuito. No hace falta registrarse ni dejar ningún dato." } },
+      { "@type": "Question", "name": "¿Los resultados son exactos?", "acceptedAnswer": { "@type": "Answer", "text": "Son orientativos. Aplican los tipos y tramos vigentes en la normativa estatal y autonómica de Andalucía para 2025, pero no tienen en cuenta particularidades de tu situación (situación familiar completa, retribuciones en especie, varias fuentes de ingresos, etc.). Para un cálculo exacto adaptado a tu caso, consúltanos." } },
+      { "@type": "Question", "name": "¿Qué diferencia hay entre sueldo bruto y sueldo neto?", "acceptedAnswer": { "@type": "Answer", "text": "El bruto es el salario pactado en el contrato, antes de ningún descuento. El neto es lo que realmente recibes en la cuenta: el bruto menos la retención de IRPF y menos tu parte de cotización a la Seguridad Social. La diferencia puede ser del 20 al 30% según tu situación." } },
+      { "@type": "Question", "name": "¿Por qué dos personas con el mismo bruto pueden tener distinto neto?", "acceptedAnswer": { "@type": "Answer", "text": "Porque la retención de IRPF depende de la situación personal. Un trabajador con dos hijos tiene una retención más baja que uno sin cargas familiares con el mismo sueldo bruto. También influye si se tiene discapacidad, si se es titular de hogar monoparental o si hay otras deducciones aplicables. Todo eso se declara en el modelo 145 que el trabajador entrega a su empresa." } },
+      { "@type": "Question", "name": "¿Qué es el modelo 145 y para qué sirve?", "acceptedAnswer": { "@type": "Answer", "text": "El modelo 145 es el formulario con el que el trabajador comunica a su empresa su situación personal y familiar, para que el departamento de nóminas aplique el porcentaje de retención de IRPF correcto. Si tu situación cambia (tienes un hijo, te casas, compras una vivienda con hipoteca), debes actualizar el modelo 145 para que la retención se ajuste. Si no lo actualizas, puedes estar pagando más IRPF del necesario o encontrarte con una sorpresa en la declaración de la renta." } },
+      { "@type": "Question", "name": "¿Puede mi empresa aplicarme una retención diferente a la que sale en la calculadora?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. La calculadora da el porcentaje mínimo legal según tu situación. La empresa puede aplicar un porcentaje mayor si el trabajador lo solicita (por ejemplo, para no tener que pagar en la renta). Lo que no puede hacer la empresa es aplicar un porcentaje inferior al mínimo legal." } },
+      { "@type": "Question", "name": "¿Puedo usar esta calculadora si soy autónomo?", "acceptedAnswer": { "@type": "Answer", "text": "Esta calculadora está pensada para trabajadores por cuenta ajena. Si eres autónomo y quieres saber cuánto te quedará neto después de cuota de autónomos e IRPF, tenemos la calculadora de autónomo o SL, que compara tu carga fiscal según la estructura que uses." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="https://aselegal.com/" aria-label="Aselegal — Inicio">
+        <img src="../assets/logo/logo-aselegal.svg" width="180" height="60" alt="Aselegal Consultores">
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="https://aselegal.com/">Inicio</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/nosotros/">Nosotros</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/servicios/">Servicios</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/tutoriales/">Tutoriales</a></li>
+          <li><a class="site-nav__link" href="https://ASELEGAL.portaldespacho.com/acceso/frame">Portal del Asesor</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/blog/">Blog</a></li>
+          <li><a class="site-nav__link" href="https://aselegal.com/contacto/">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <span class="lang-switch" aria-label="Selector de idioma">
+          <a href="https://aselegal.com/en/" hreflang="en">EN</a><span>·</span><a href="#" hreflang="es" aria-current="true">ES</a>
+        </span>
+        <a class="btn btn--primary" href="https://aselegal.com/contacto/">Contacto</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Breadcrumb ===== -->
+    <nav class="container breadcrumb" aria-label="Migas de pan">
+      <ol>
+        <li><a href="https://aselegal.com/">Inicio</a></li>
+        <li><a href="../index.html">Calculadoras</a></li>
+        <li><span aria-current="page">Calculadora de sueldo neto</span></li>
+      </ol>
+    </nav>
+
+    <!-- ===== Hero / intro ===== -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="prose">
+          <h1 class="hero__title">Calculadora de sueldo neto: descubre cuánto cobras realmente</h1>
+          <p class="hero__lead">Te dicen que tu sueldo son 25.000 euros brutos al año. Pero lo que entra en tu cuenta el día de pago es otra historia.</p>
+          <p class="mt-6"><a class="btn btn--primary btn--lg" href="https://aselegal.com/contacto/">Consulta con Aselegal</a></p>
+        </div>
+        <figure class="media-shot hero__media">
+          <img src="../assets/img/placeholder.jpg" width="1200" height="800" alt="Asesor laboral de Aselegal revisando una nómina (imagen de ejemplo)">
+          <figcaption class="media-shot__tag">Imagen de ejemplo</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== Intro ===== -->
+    <section class="section section--tight section--blue">
+      <div class="container">
+        <div class="prose">
+          <p>La diferencia entre bruto y neto no es un capricho de Hacienda. Es el resultado de dos descuentos que se aplican en cada nómina: tu retención de IRPF y tu cotización a la Seguridad Social. Y el porcentaje varía según lo que ganas, tu situación familiar y la comunidad autónoma donde tributas.</p>
+          <p>Esta calculadora te da el número real: lo que cobras cada mes y cada año, desglosado en dos líneas claras.</p>
+          <p>Si el resultado te genera más preguntas —por qué retienen ese porcentaje, cómo puedes ajustarlo, si tienes derecho a alguna deducción— en Aselegal te lo resolvemos ese mismo día.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Calculadora ===== -->
+    <section class="section section--calc">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <h2>Calculadora de sueldo neto</h2>
+          <p class="section__lead">Introduce tu salario bruto anual y tu situación personal. Obtendrás el neto mensual y anual después de IRPF y cotizaciones a la Seguridad Social.</p>
+        </div>
+
+        <div class="calc" id="calc-sueldo-neto">
+          <form class="calc__form" aria-label="Datos para el cálculo del sueldo neto" onsubmit="return false">
+            <div class="calc__field">
+              <span class="calc__label" id="sn-pagas-label">Número de pagas</span>
+              <div class="calc__toggle" role="group" aria-labelledby="sn-pagas-label">
+                <button type="button" data-sn-pagas="12" aria-pressed="true">12 pagas</button>
+                <button type="button" data-sn-pagas="14" aria-pressed="false">14 pagas</button>
+              </div>
+            </div>
+
+            <div class="calc__field">
+              <label class="calc__label" for="sn-bruto">Salario bruto anual</label>
+              <div class="calc__input-wrap">
+                <input class="calc__input" id="sn-bruto" type="number" inputmode="numeric" min="0" step="500" value="25000">
+                <span class="unit" aria-hidden="true">€</span>
+              </div>
+            </div>
+
+            <div class="calc__row">
+              <div class="calc__field">
+                <label class="calc__label" for="sn-hijos">Hijos a cargo</label>
+                <input class="calc__input" id="sn-hijos" type="number" inputmode="numeric" min="0" max="10" step="1" value="0">
+              </div>
+              <div class="calc__field">
+                <label class="calc__label" for="sn-discap">Discapacidad</label>
+                <select class="calc__select" id="sn-discap">
+                  <option value="0">Ninguna o menos del 33%</option>
+                  <option value="3000">Entre 33% y 65%</option>
+                  <option value="9000">Más del 65%</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="calc__field">
+              <label class="calc__radio" for="sn-mono">
+                <input type="checkbox" id="sn-mono">
+                <span>Hogar monoparental (sin cónyuge, con hijos a cargo)</span>
+              </label>
+            </div>
+          </form>
+
+          <div class="calc__result" aria-live="polite">
+            <span class="calc__result-head">Tu sueldo neto</span>
+            <div class="calc__result-main">
+              <span class="calc__result-label">Neto mensual aproximado</span>
+              <span class="calc__result-value" id="sn-neto-mes">—</span>
+              <span class="calc__result-sub" id="sn-neto-anual">—</span>
+            </div>
+            <div class="calc__lines">
+              <div class="calc__line">
+                <span class="calc__line-op" aria-hidden="true">+</span>
+                <span class="calc__line-name">Salario bruto anual</span>
+                <span class="calc__line-val" id="sn-bruto-val">—</span>
+              </div>
+              <div class="calc__line">
+                <span class="calc__line-op" aria-hidden="true">−</span>
+                <span class="calc__line-name">Seguridad Social <small>cotización trabajador ~6,35%</small></span>
+                <span class="calc__line-val" id="sn-ss-val">—</span>
+              </div>
+              <div class="calc__line">
+                <span class="calc__line-op" aria-hidden="true">−</span>
+                <span class="calc__line-name">Retención de IRPF <small id="sn-irpf-tipo">—</small></span>
+                <span class="calc__line-val" id="sn-irpf-val">—</span>
+              </div>
+              <div class="calc__line is-total">
+                <span class="calc__line-op" aria-hidden="true">=</span>
+                <span class="calc__line-name">Sueldo neto anual</span>
+                <span class="calc__line-val" id="sn-neto-val">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="calc-intro__note">Nota: los resultados son orientativos y se basan en los tramos y tipos vigentes en Andalucía para 2025. No sustituyen el análisis de tu situación concreta.</p>
+      </div>
+    </section>
+
+    <!-- ===== Para qué situaciones es útil ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <h2>Para qué situaciones es útil esta calculadora</h2>
+          <p class="section__lead">Usa la calculadora antes de tomar cualquiera de estas decisiones:</p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Situación</th><th scope="col">Qué muestra la calculadora</th><th scope="col">Para qué sirve</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Vas a negociar tu sueldo</td><td>Tu neto mensual real con ese bruto</td><td>Saber exactamente qué pedirle a la empresa</td></tr>
+              <tr><td>Te han ofrecido una subida</td><td>Cuánto sube tu neto, no solo tu bruto</td><td>Evaluar si el aumento compensa</td></tr>
+              <tr><td>Tienes un trabajador a cargo</td><td>Cuánto le queda neto al empleado</td><td>Evitar sorpresas el día de nómina</td></tr>
+              <tr><td>Estás comparando ofertas</td><td>Neto de cada oferta en las mismas condiciones</td><td>Comparar con criterio, no con el titular</td></tr>
+              <tr><td>Cambias tu situación familiar</td><td>Cómo afecta al IRPF un hijo o una hipoteca</td><td>Anticipar si debes actualizar el modelo 145</td></tr>
+              <tr><td>Eres autónomo y tienes trabajadores</td><td>Coste real neto de cada empleado</td><td>Planificar la masa salarial sin sorpresas</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Cómo se calcula ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <h2>Cómo se calcula el sueldo neto</h2>
+          <p class="section__lead">Dos descuentos que se aplican en cada nómina, antes de que el dinero llegue a tu cuenta.</p>
+        </div>
+        <div class="concept-grid">
+          <div class="concept-card">
+            <span class="concept-card__num" aria-hidden="true">01</span>
+            <div class="prose">
+              <h3>Retención de IRPF</h3>
+              <p>El IRPF es el impuesto sobre la renta de las personas físicas. Hacienda establece un tipo de retención que tu empresa aplica directamente en cada nómina. Ese dinero va a cuenta de lo que pagarás (o te devolverán) en la declaración de la renta.</p>
+              <p>El porcentaje varía según tres factores: tu salario bruto anual, tu situación personal y familiar (hijos, discapacidad, titular único de hogar), y la comunidad autónoma donde tributas. En Andalucía se aplican los tipos autonómicos propios.</p>
+              <p>Si tu retención es más alta de lo necesario, Hacienda te devolverá la diferencia en la renta. Si es más baja, tendrás que pagar la diferencia. Por eso conviene tener la retención calibrada a tu situación real, y actualizarla si esta cambia.</p>
+            </div>
+          </div>
+          <div class="concept-card">
+            <span class="concept-card__num" aria-hidden="true">02</span>
+            <div class="prose">
+              <h3>Cotización a la Seguridad Social</h3>
+              <p>Además del IRPF, de tu bruto también se descuenta tu parte de la cotización a la Seguridad Social. En 2025, el trabajador aporta aproximadamente un 6,35% sobre su base de cotización. Esta cuota cubre las contingencias comunes, el desempleo y la formación profesional.</p>
+              <p>Ese 6,35% es lo que paga el trabajador. La empresa paga adicionalmente alrededor de un 29-30% sobre la misma base. Eso es lo que hace que contratar a alguien cueste mucho más que el sueldo que aparece en la nómina.</p>
+            </div>
+          </div>
+        </div>
+        <div class="concept-example">
+          <h3>Un ejemplo con números</h3>
+          <div class="table-wrap">
+            <table class="data-table kv-table">
+              <thead>
+                <tr><th scope="col">Concepto</th><th scope="col" class="num">Importe anual</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Salario bruto anual</th><td class="num">25.000 €</td></tr>
+                <tr><th scope="row">Retención IRPF (estimada ~15%)</th><td class="num">−3.750 €</td></tr>
+                <tr><th scope="row">Cotización SS trabajador (~6,35%)</th><td class="num">−1.588 €</td></tr>
+                <tr class="is-highlight"><th scope="row">Sueldo neto anual aproximado</th><td class="num">≈ 19.662 €</td></tr>
+                <tr><th scope="row">Sueldo neto mensual (12 pagas)</th><td class="num">≈ 1.638 €/mes</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="calc__note">Ejemplo orientativo para un trabajador sin hijos, sin discapacidad, en Andalucía. El porcentaje de IRPF real puede variar según tu situación familiar y el modelo 145 cumplimentado.</p>
+        </div>
+        <p class="mt-6 text-center"><a class="btn btn--secondary btn--lg" href="https://aselegal.com/contacto/">Habla con nuestro equipo</a></p>
+      </div>
+    </section>
+
+    <!-- ===== Por qué Aselegal ===== -->
+    <section class="section section--why">
+      <div class="container">
+        <div class="section__head"><h2>Por qué Aselegal</h2><p class="section__lead">Despacho de asesoría en Sevilla con historia real en la ciudad — fiscal, laboral y jurídico en el mismo sitio.</p></div>
+        <div class="why__grid">
+          <div class="why__item">
+            <span class="why__metric">30<small>años</small></span>
+            <h3 class="why__item-title">En Sevilla, no en una central</h3>
+            <p>Somos un despacho con historia real en la ciudad. Conocemos el tejido empresarial sevillano y llevamos décadas acompañando a trabajadores y empresas en las decisiones que importan.</p>
+          </div>
+          <div class="why__item">
+            <span class="why__metric">24h<small>máximo</small></span>
+            <h3 class="why__item-title">Respondemos el mismo día</h3>
+            <p>Es una norma interna, no una promesa de marketing. Llamada que entra, respuesta de vuelta. Si tu asesoría tarda días en contestarte, sabes dónde estamos.</p>
+          </div>
+          <div class="why__item">
+            <span class="why__metric">3<small>áreas</small></span>
+            <h3 class="why__item-title">Laboral, fiscal y jurídico</h3>
+            <p>No subcontratamos. Si tu duda sobre la nómina cruza hacia el IRPF o hacia una reclamación laboral, tienes el mismo equipo para todo. Sin coordinaciones externas, sin repetirte.</p>
+          </div>
+          <div class="why__item">
+            <span class="why__metric">∞<small>tiempo real</small></span>
+            <h3 class="why__item-title">Contabilidad al día</h3>
+            <p>Los clientes de Aselegal acceden a su información actualizada a través del portal Cegid. Sabes lo que hay sin esperar al cierre del mes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Para quién es / no es ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="audience audience--media">
+          <figure class="audience__img">
+            <img src="../assets/img/placeholder.jpg" alt="Asesoría laboral en Aselegal, Sevilla (imagen de ejemplo)" loading="lazy">
+          </figure>
+          <div class="audience__content">
+            <div class="audience__card">
+              <h3>Para quién es esta calculadora</h3>
+              <ul class="audience__list">
+                <li><span class="tick" aria-hidden="true">✓</span><span>Es útil si eres trabajador por cuenta ajena y quieres saber cuánto te quedará neto antes de aceptar una oferta o negociar una subida.</span></li>
+                <li><span class="tick" aria-hidden="true">✓</span><span>Es útil si eres autónomo con trabajadores a cargo y necesitas calcular el neto de cada empleado para gestionar la nómina o planificar costes.</span></li>
+                <li><span class="tick" aria-hidden="true">✓</span><span>Es útil si eres responsable de RRHH o administración en una empresa sevillana y trabajas con datos de nómina que necesitas verificar antes de comunicarlos.</span></li>
+              </ul>
+            </div>
+            <div class="audience__card">
+              <h3>Para quién no es esta calculadora</h3>
+              <ul class="audience__list">
+                <li><span class="cross" aria-hidden="true">✕</span><span>No es un sustituto del análisis individualizado si tu situación tiene particularidades: retribuciones en especie, planes de pensiones de empresa, varias fuentes de ingresos, reducción por movilidad geográfica, rendimientos del trabajo irregular. En esos casos el resultado puede diferir significativamente de tu neto real. Consúltanos antes de tomar decisiones con ese número.</span></li>
+              </ul>
+              <p class="mt-6"><a class="btn btn--primary" href="https://aselegal.com/contacto/">Consulta a un experto</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Servicios relacionados ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <h2>Servicios relacionados en Aselegal</h2>
+          <p class="section__lead">Si después de usar la calculadora quieres dar el siguiente paso, estos son los servicios que más se consultan desde esta página:</p>
+        </div>
+        <div class="services-split">
+          <div class="services">
+            <div class="service-link"><p><strong>Asesoría laboral para empresas</strong>: nóminas, Seguridad Social, EREs, inspecciones de trabajo, convenios colectivos. <a href="https://aselegal.com/servicios/asesoria-laboral/">Más información aquí.</a></p></div>
+            <div class="service-link"><p><strong>Asesoría laboral para autónomos</strong>: altas, bajas, cotizaciones, contratos y representación ante organismos. <a href="https://aselegal.com/servicios/asesoria-laboral/">Más información aquí.</a></p></div>
+            <div class="service-link"><p><strong>Blog sobre retención de IRPF:</strong> cómo funciona y cómo afecta a tu nómina. <a href="https://aselegal.com/rentencion-irpf-nomina-importancia-modelo-145/">Lee el artículo completo aquí.</a></p></div>
+          </div>
+          <figure class="services__media">
+            <img src="../assets/img/placeholder.jpg" alt="Equipo de Aselegal asesorando en el despacho de Sevilla" loading="lazy">
+          </figure>
+        </div>
+        <p class="mt-6 text-center"><a class="btn-link" href="../cuota-autonomos/index.html">¿Eres autónomo? Calcula tu cuota de autónomos <span class="arrow" aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+
+    <!-- ===== Reviews ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head section__head--center"><h2>Lo que dicen nuestros clientes</h2></div>
+        <div class="reviews">
+          <div class="reviews__head">
+            <div class="reviews__google-badge">
+              <div class="reviews__google-top">
+                <svg class="reviews__google-icon" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z" fill="#4285f4"/><path d="M272.1 544.3c73.4 0 135.3-24.1 180.4-65.7l-87.7-68c-24.4 16.6-55.9 26-92.6 26-71 0-131.2-47.9-152.8-112.3H28.9v70.1c46.2 91.9 140.3 149.9 243.2 149.9z" fill="#34a853"/><path d="M119.3 324.3c-11.4-33.8-11.4-70.4 0-104.2V150H28.9c-38.6 76.9-38.6 167.5 0 244.4l90.4-70.1z" fill="#fbbc04"/><path d="M272.1 107.7c38.8-.6 76.3 14 104.4 40.8l77.7-77.7C405 24.6 339.7-.8 272.1 0 169.2 0 75.1 58 28.9 150l90.4 70.1c21.5-64.5 81.8-112.4 152.8-112.4z" fill="#ea4335"/></svg>
+                <span class="reviews__google-wordmark">Google</span>
+              </div>
+              <div class="reviews__score-row">
+                <span class="reviews__score" aria-hidden="true">4,9</span>
+                <div>
+                  <div class="reviews__stars" aria-hidden="true">★★★★★</div>
+                  <div class="reviews__meta">Basado en reseñas de Google · datos de ejemplo</div>
+                </div>
+              </div>
+            </div>
+            <span class="visually-hidden">Valoración media de 4,9 sobre 5 estrellas, basada en reseñas de ejemplo.</span>
+          </div>
+          <div class="reviews__grid">
+            <article class="review-card">
+              <div class="review-card__top">
+                <span class="review-card__avatar" aria-hidden="true">ML</span>
+                <span class="review-card__who"><span class="review-card__name">María L.</span><span class="review-card__date">hace 2 semanas</span></span>
+              </div>
+              <span class="review-card__stars" aria-hidden="true">★★★★★</span><span class="visually-hidden">5 de 5 estrellas</span>
+              <p class="review-card__text">«Resolví mi alta de autónomo en un día. Me explicaron la cuota y el IRPF sin tecnicismos y respondieron enseguida.»</p>
+            </article>
+            <article class="review-card">
+              <div class="review-card__top">
+                <span class="review-card__avatar" aria-hidden="true">JR</span>
+                <span class="review-card__who"><span class="review-card__name">Javier R.</span><span class="review-card__date">hace 1 mes</span></span>
+              </div>
+              <span class="review-card__stars" aria-hidden="true">★★★★★</span><span class="visually-hidden">5 de 5 estrellas</span>
+              <p class="review-card__text">«Pasé de autónomo a SL con ellos. Transparentes con los costes desde el principio y todo el proceso muy ágil.»</p>
+            </article>
+            <article class="review-card">
+              <div class="review-card__top">
+                <span class="review-card__avatar" aria-hidden="true">LM</span>
+                <span class="review-card__who"><span class="review-card__name">Lucía M.</span><span class="review-card__date">hace 1 mes</span></span>
+              </div>
+              <span class="review-card__stars" aria-hidden="true">★★★★★</span><span class="visually-hidden">5 de 5 estrellas</span>
+              <p class="review-card__text">«Llevo años con Aselegal. Responden el mismo día, de verdad. Da tranquilidad tener todo en el mismo sitio.»</p>
+            </article>
+          </div>
+          <p class="reviews__note">Reseñas de ejemplo (datos ficticios). Se sustituirán por el widget real de Google Reviews de Aselegal en la integración.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contacto ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <h2>Consulta con nuestro equipo</h2>
+          <p class="section__lead">Si tienes una pregunta concreta sobre tu nómina, tu retención de IRPF o el coste de tus trabajadores, escríbenos. Te respondemos hoy.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="map-embed">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.3976431638284!2d-5.9980902!3d37.380427399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c1fa56235f5%3A0x2235ad979449e29c!2sASELEGAL%20%7C%20Asesor%C3%ADa%20en%20Sevilla%20(%20Laboral%20y%20Fiscal).%20Despacho%20Jur%C3%ADdico%20para%20particulares%20y%20empresas.!5e0!3m2!1ses!2sus!4v1781397131867!5m2!1ses!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de ubicación de Aselegal en Plaza de Cuba, Sevilla"></iframe>
+          </div>
+          <form class="contact-form" aria-label="Formulario de contacto (maqueta)" onsubmit="return false">
+            <p class="placeholder__tag" style="align-self:flex-start">Formulario de contacto</p>
+            <div class="form-field"><label for="c-nombre">Nombre</label><input id="c-nombre" type="text" autocomplete="name" placeholder="Tu nombre"></div>
+            <div class="form-field"><label for="c-email">Email</label><input id="c-email" type="email" autocomplete="email" placeholder="tu@email.com"></div>
+            <div class="form-field"><label for="c-msg">Cuéntanos</label><textarea id="c-msg" rows="4" placeholder="¿En qué podemos ayudarte?"></textarea></div>
+            <button class="btn btn--primary btn--block" type="submit">Enviar consulta</button>
+            <p class="calc__note">Maqueta de formulario — se conectará al sistema de contacto de Aselegal en la integración.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head"><h2>Preguntas frecuentes sobre la calculadora de sueldo neto</h2></div>
+        <div class="faq">
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿La calculadora es gratuita?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Sí. Es de uso libre y gratuito. No hace falta registrarse ni dejar ningún dato.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Los resultados son exactos?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Son orientativos. Aplican los tipos y tramos vigentes en la normativa estatal y autonómica de Andalucía para 2025, pero no tienen en cuenta particularidades de tu situación (situación familiar completa, retribuciones en especie, varias fuentes de ingresos, etc.). Para un cálculo exacto adaptado a tu caso, consúltanos.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Qué diferencia hay entre sueldo bruto y sueldo neto?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>El bruto es el salario pactado en el contrato, antes de ningún descuento. El neto es lo que realmente recibes en la cuenta: el bruto menos la retención de IRPF y menos tu parte de cotización a la Seguridad Social. La diferencia puede ser del 20 al 30% según tu situación.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Por qué dos personas con el mismo bruto pueden tener distinto neto?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Porque la retención de IRPF depende de la situación personal. Un trabajador con dos hijos tiene una retención más baja que uno sin cargas familiares con el mismo sueldo bruto. También influye si se tiene discapacidad, si se es titular de hogar monoparental o si hay otras deducciones aplicables. Todo eso se declara en el modelo 145 que el trabajador entrega a su empresa.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Qué es el modelo 145 y para qué sirve?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>El modelo 145 es el formulario con el que el trabajador comunica a su empresa su situación personal y familiar, para que el departamento de nóminas aplique el porcentaje de retención de IRPF correcto. Si tu situación cambia (tienes un hijo, te casas, compras una vivienda con hipoteca), debes actualizar el modelo 145 para que la retención se ajuste. Si no lo actualizas, puedes estar pagando más IRPF del necesario o encontrarte con una sorpresa en la declaración de la renta.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Puede mi empresa aplicarme una retención diferente a la que sale en la calculadora?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Sí. La calculadora da el porcentaje mínimo legal según tu situación. La empresa puede aplicar un porcentaje mayor si el trabajador lo solicita (por ejemplo, para no tener que pagar en la renta). Lo que no puede hacer la empresa es aplicar un porcentaje inferior al mínimo legal.</p></div></div></div>
+          </div>
+          <div class="faq__item">
+            <h3 style="margin:0"><button class="faq__question" type="button" aria-expanded="false">¿Puedo usar esta calculadora si soy autónomo?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__answer"><div><div class="faq__answer-inner"><p>Esta calculadora está pensada para trabajadores por cuenta ajena. Si eres autónomo y quieres saber cuánto te quedará neto después de cuota de autónomos e IRPF, tenemos la <a href="../autonomo-empresa/index.html">calculadora de autónomo o SL</a>, que compara tu carga fiscal según la estructura que uses.</p></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img src="../assets/logo/logo-aselegal.svg" width="180" height="60" alt="Aselegal Consultores">
+          <p>Asesoría fiscal, laboral, jurídica y mercantil en Sevilla. 30 años en la ciudad, no en una central. Respondemos el mismo día.</p>
+        </div>
+        <nav class="site-footer__col" aria-label="Enlaces de Aselegal">
+          <h3>Aselegal</h3>
+          <ul>
+            <li><a href="https://aselegal.com/">Inicio</a></li>
+            <li><a href="https://aselegal.com/nosotros/">Nosotros</a></li>
+            <li><a href="https://aselegal.com/servicios/">Servicios</a></li>
+            <li><a href="https://aselegal.com/blog/">Blog</a></li>
+            <li><a href="https://aselegal.com/contacto/">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="site-footer__col">
+          <h3>Contacto</h3>
+          <address class="site-footer__contact">
+            <span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-5.686-7-11a7 7 0 1 1 14 0c0 5.314-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Pl. de Cuba, 3 Acc · 41011 Sevilla</span>
+            <span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 18l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg><a href="tel:+34954536434">954 53 64 34</a></span>
+            <span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.8 17.8L3 21l3.3-.8A11 11 0 1 0 20.5 3.5Z"/></svg><a href="https://wa.me/34616312424">WhatsApp 616 312 424</a></span>
+            <span><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:info@aselegal.com">info@aselegal.com</a></span>
+          </address>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 Aselegal Consultores. Todos los derechos reservados.</p>
+        <nav aria-label="Enlaces legales">
+          <a href="https://aselegal.com/politica-de-privacidad/">Política de privacidad</a>
+          <a href="https://aselegal.com/aviso-legal/">Aviso legal</a>
+          <a href="https://aselegal.com/politica-de-cookies/">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/34616312424" aria-label="Escríbenos por WhatsApp" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02ZM12.04 20.15a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+  </a>
+</body>
+</html>

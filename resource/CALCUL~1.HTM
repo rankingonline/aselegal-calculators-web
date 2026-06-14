@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de sueldo neto de autónomo</title>
+<style>
+  :root{
+    --bg:#fff; --panel:#f4f1ea; --panel-result:#e9f5d0;
+    --text:#1a1a1a; --muted:#6b6b6b; --accent:#2f6b2f; --border:#d8d4c8;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--text); margin:0; padding:24px; line-height:1.5;}
+  .wrap{max-width:920px; margin:0 auto;}
+  h1{font-size:24px; font-weight:600; margin:0 0 4px;}
+  .sub{color:var(--muted); font-size:14px; margin:0 0 24px;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media(max-width:720px){.grid{grid-template-columns:1fr;}}
+  .panel{background:var(--panel); border-radius:16px; padding:24px;}
+  .panel h2{font-size:20px; font-weight:600; margin:0 0 20px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:13px; color:var(--muted); margin-bottom:5px;}
+  .field input,.field select{width:100%; padding:9px 12px; font-size:15px; border:1px solid var(--border);
+    border-radius:8px; background:#fff; color:var(--text);}
+  .field input:focus,.field select:focus{outline:none; border-color:var(--accent);}
+  .toggle{display:flex; gap:8px; margin-bottom:18px;}
+  .toggle button{flex:1; padding:9px; font-size:14px; border:1px solid var(--border); border-radius:8px;
+    background:#fff; cursor:pointer; color:var(--text);}
+  .toggle button.active{border:2px solid var(--accent); font-weight:600;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .result{background:var(--panel-result);}
+  .line{display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid rgba(0,0,0,.06);}
+  .line:last-child{border-bottom:none;}
+  .op{width:28px; height:28px; flex-shrink:0; border-radius:50%; background:#fff; border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:600;}
+  .line .name{flex:1; font-size:15px;}
+  .line .name small{display:block; color:var(--muted); font-size:12px; font-weight:400;}
+  .line .val{font-size:18px; font-weight:600; white-space:nowrap;}
+  .line.total .name{font-weight:600;}
+  .line.total .val{font-size:22px;}
+  .note{font-size:12px; color:var(--muted); margin:18px 0 0; line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Calculadora de sueldo neto de autónomo</h1>
+  <p class="sub">Averigua cuánto cobrarás aproximadamente como autónomo en España. Resultado orientativo.</p>
+
+  <div class="grid">
+    <div class="panel">
+      <h2>1. Tu situación</h2>
+      <div class="toggle">
+        <button id="btn-anual" class="active">Anual</button>
+        <button id="btn-mensual">Mensual</button>
+      </div>
+      <div class="field">
+        <label>Lo que crees que ingresarás al año (€)</label>
+        <input type="number" id="ingresos" value="18000" min="0" step="500">
+      </div>
+      <div class="field">
+        <label>Cuota mensual de autónomos (€)</label>
+        <input type="number" id="cuota" value="60" min="0" step="10">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>Gastos fijos anuales (€)</label>
+          <input type="number" id="fijos" value="0" min="0" step="100">
+        </div>
+        <div class="field">
+          <label>Gastos variables anuales (€)</label>
+          <input type="number" id="variables" value="0" min="0" step="100">
+        </div>
+      </div>
+      <div class="field">
+        <label>Bienes de inversión (€) — se deducen ÷ 4 años</label>
+        <input type="number" id="bienes" value="0" min="0" step="500">
+      </div>
+      <div class="field">
+        <label>Discapacidad</label>
+        <select id="discap">
+          <option value="0">Ninguna o menos del 33%</option>
+          <option value="3000">Entre 33% y 65% (−3.000€)</option>
+          <option value="9000">Más del 65% (−9.000€)</option>
+        </select>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>Hijos a cargo</label>
+          <input type="number" id="hijos" value="0" min="0" max="10" step="1">
+        </div>
+        <div class="field">
+          <label>Mayores de 65 a cargo</label>
+          <input type="number" id="mayores" value="0" min="0" max="10" step="1">
+        </div>
+      </div>
+    </div>
+
+    <div class="panel result">
+      <h2>2. Tu sueldo</h2>
+      <div class="line">
+        <div class="op">+</div>
+        <div class="name">Tu sueldo bruto<small id="o-gastos">0€ de gastos deducibles</small></div>
+        <div class="val" id="o-bruto">—</div>
+      </div>
+      <div class="line">
+        <div class="op">−</div>
+        <div class="name">Cuota de autónomos</div>
+        <div class="val" id="o-cuota">—</div>
+      </div>
+      <div class="line">
+        <div class="op">−</div>
+        <div class="name">Impuestos (IRPF)</div>
+        <div class="val" id="o-irpf">—</div>
+      </div>
+      <div class="line total">
+        <div class="op">=</div>
+        <div class="name">Tu sueldo neto</div>
+        <div class="val" id="o-neto">—</div>
+      </div>
+      <p class="note">
+        Tramos IRPF estatales aplicados por escalones: 19% hasta 12.450€ · 24% hasta 20.200€ ·
+        30% hasta 35.200€ · 37% hasta 60.000€ · 45% hasta 300.000€ · 47% por encima.<br>
+        Reducciones de la base: mínimo personal 5.550€, hijos (2.400/2.700/4.000/4.700€),
+        mayores 1.150€ c/u, y gastos de difícil justificación 5% (máx. 2.000€).
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var periodo = "anual";
+  var fmt = new Intl.NumberFormat('es-ES', {maximumFractionDigits:0});
+  var brackets = [[12450,0.19],[20200,0.24],[35200,0.30],[60000,0.37],[300000,0.45],[Infinity,0.47]];
+
+  function irpf(base){
+    if(base<=0) return 0;
+    var tax=0, prev=0;
+    for(var i=0;i<brackets.length;i++){
+      var top=brackets[i][0], rate=brackets[i][1];
+      if(base>top){ tax+=(top-prev)*rate; prev=top; }
+      else { tax+=(base-prev)*rate; break; }
+    }
+    return tax;
+  }
+  function hijosRed(n){
+    var t=[2400,2700,4000,4700], s=0;
+    for(var i=0;i<n;i++) s += i<4 ? t[i] : 4700;
+    return s;
+  }
+  function val(id){ var v=parseFloat(document.getElementById(id).value); return isNaN(v)?0:v; }
+
+  function calc(){
+    var ingresos = val('ingresos');
+    var cuotaAnual = val('cuota')*12;
+    var gastos = val('fijos') + val('variables') + val('bienes')/4;
+    var rendNeto = ingresos - gastos - cuotaAnual;
+    var dificil = Math.min(Math.max(rendNeto,0)*0.05, 2000);
+    var reducciones = 5550 + val('discap') + hijosRed(val('hijos')) + val('mayores')*1150;
+    var base = Math.max(rendNeto - dificil - reducciones, 0);
+    var impuestos = irpf(base);
+    var neto = rendNeto - impuestos;
+
+    var d = periodo==="mensual" ? 12 : 1;
+    var euro = function(x){ return fmt.format(Math.round(x/d)) + "€"; };
+    document.getElementById('o-bruto').textContent = euro(ingresos);
+    document.getElementById('o-gastos').textContent = fmt.format(Math.round(gastos/d)) + "€ de gastos deducibles";
+    document.getElementById('o-cuota').textContent = euro(cuotaAnual);
+    document.getElementById('o-irpf').textContent = euro(impuestos);
+    document.getElementById('o-neto').textContent = euro(neto);
+  }
+
+  function setPeriodo(p){
+    periodo=p;
+    document.getElementById('btn-anual').className = p==="anual" ? "active" : "";
+    document.getElementById('btn-mensual').className = p==="mensual" ? "active" : "";
+    calc();
+  }
+  document.getElementById('btn-anual').addEventListener('click', function(){ setPeriodo("anual"); });
+  document.getElementById('btn-mensual').addEventListener('click', function(){ setPeriodo("mensual"); });
+  ['ingresos','cuota','fijos','variables','bienes','discap','hijos','mayores'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
