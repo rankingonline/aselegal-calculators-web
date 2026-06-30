@@ -1,8 +1,9 @@
 /* =====================================================================
    Aselegal · Calculadora ¿AUTÓNOMO o SL?
-   Contrato §6.3C + nota dev del copy 3: beneficio neto anual → comparar
-   carga fiscal Autónomo (IRPF, tramos Andalucía 2025) vs SL (IS 23 % hasta
-   1 M€ de facturación, 25 % resto) → neto tras impuestos y diferencia.
+   Contrato §6.3C: beneficio neto anual → comparar carga fiscal
+   Autónomo (IRPF, tramos Andalucía) vs SL (IS 2026: 21 % sobre los
+   primeros 50.000 €, 23 % sobre el resto para pymes < 1 M€; 25 % plano
+   si facturación > 1 M€) → neto tras impuestos y diferencia.
 
    Modelo simplificado y deliberado (lo exige el copy): compara el IMPUESTO
    SOBRE EL BENEFICIO en cada estructura. NO incluye el coste de
@@ -37,22 +38,29 @@
 
   function set(id, txt) { var el = document.getElementById(id); if (el) el.textContent = txt; }
 
+  function calcIS(beneficio, grande) {
+    if (grande) return beneficio * 0.25;          /* > 1 M€ facturación: 25% plano */
+    /* Pymes (< 1 M€): 21% sobre los primeros 50.000 €, 23% sobre el resto */
+    return Math.min(beneficio, 50000) * 0.21 + Math.max(beneficio - 50000, 0) * 0.23;
+  }
+
   function calc() {
     var beneficio = Math.max(UI.num("as-beneficio"), 0);
     var f1m = document.getElementById("as-factura-1m");
-    var tipoIS = (f1m && f1m.checked) ? 0.25 : 0.23;
+    var grande = f1m && f1m.checked;
 
     var irpf = irpfAutonomo(beneficio);
-    var is = beneficio * tipoIS;
+    var is = calcIS(beneficio, grande);
     var netoAuto = Math.max(beneficio - irpf, 0);
     var netoSL = Math.max(beneficio - is, 0);
     var dif = netoSL - netoAuto;
     var slMejor = dif >= 0;
+    var tipoISEfectivo = beneficio > 0 ? (is / beneficio) * 100 : 0;
 
     set("as-auto-neto", UI.euro(netoAuto));
     set("as-auto-meta", "IRPF ≈ " + UI.euro(irpf) + " (" + UI.pct(beneficio > 0 ? irpf / beneficio * 100 : 0) + ")");
     set("as-sl-neto", UI.euro(netoSL));
-    set("as-sl-meta", "IS " + UI.pct(tipoIS * 100, 0) + " ≈ " + UI.euro(is));
+    set("as-sl-meta", (grande ? "IS 25% plano" : "IS 21%/23% pyme") + " ≈ " + UI.euro(is) + " (" + UI.pct(tipoISEfectivo) + ")");
 
     var optAuto = document.querySelector(".as-opt-auto");
     var optSL = document.querySelector(".as-opt-sl");

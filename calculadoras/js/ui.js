@@ -99,5 +99,17 @@
         if (item) item.classList.toggle("is-open", !expanded);
       });
     });
+
+    /* Navegación de tarjeta completa: el ::after CSS no alcanza .calc-card porque
+       .calc-card__title tiene position:relative (es su containing block, no .calc-card). */
+    var calcCards = document.querySelectorAll(".calc-card:not(.calc-card--soon)");
+    Array.prototype.forEach.call(calcCards, function (card) {
+      var link = card.querySelector(".calc-card__title a");
+      if (!link) return;
+      card.addEventListener("click", function (e) {
+        if (e.target.closest("a")) return;
+        window.location.href = link.href;
+      });
+    });
   });
 })(window);

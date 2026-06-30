@@ -1,12 +1,12 @@
 /* =====================================================================
-   Aselegal · Calculadora de CUOTA DE AUTÓNOMOS 2025
+   Aselegal · Calculadora de CUOTA DE AUTÓNOMOS 2026
    Contrato §6.3B: rendimientos netos mensuales → tramo, base mínima,
    base máxima y cuota mínima/mes. Tipo general ≈30,6 %.
 
-   La tabla oficial de 15 tramos 2025 es VERBATIM del copy
-   (02-cuota-autonomos.md). Es la fuente de la verdad: prevalece sobre
-   la lógica simplificada del HTML de referencia.
-   Cuando cambien con los PGE 2026, actualizar solo este array.
+   La tabla oficial de 15 tramos 2026 (Orden de Cotización SS 2026).
+   Es la fuente de la verdad: prevalece sobre la lógica simplificada
+   del HTML de referencia.
+   Para actualizar en años sucesivos, modificar solo el array TRAMOS.
 
    --- CONTRATO DE MARKUP ---
    Input:  #ca-rend   number  rendimientos netos mensuales estimados (€)
@@ -18,7 +18,7 @@
   "use strict";
   var UI = window.AselegalUI;
 
-  /* Tramos de cotización por ingresos reales · 2025 (Seguridad Social) */
+  /* Tramos de cotización por ingresos reales · 2026 (Seguridad Social, Orden de Cotización 2026) */
   var TRAMOS = [
     { hasta: 670,      baseMin: 653.59,  baseMax: 718.95,  cuota: 200.10, label: "Menos de 670 €/mes" },
     { hasta: 900,      baseMin: 718.95,  baseMax: 900.00,  cuota: 220.10, label: "Entre 670 y 900 €/mes" },

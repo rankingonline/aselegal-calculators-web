@@ -31,12 +31,18 @@
      habitual, suficiente para un cálculo orientativo. */
   var IRPF = [[12450, 0.19], [20200, 0.24], [35200, 0.30], [60000, 0.37], [300000, 0.45], [Infinity, 0.47]];
 
-  var TIPO_SS = 0.0635;                 /* cotización trabajador ~6,35% (copy) */
-  var BASE_SS_MAX_ANUAL = 4909.50 * 12; /* base máxima cotización 2025 (≈58.914 €/año) */
+  var TIPO_SS = 0.0635;                 /* cotización trabajador ~6,35% */
+  var BASE_SS_MAX_ANUAL = 4909.50 * 12; /* base máxima cotización (≈58.914 €/año) */
   var MINIMO_PERSONAL = 5550;           /* mínimo del contribuyente */
   var OTROS_GASTOS = 2000;              /* art. 19.2.f) otros gastos deducibles */
   var DESC = [2400, 2700, 4000, 4500];  /* mínimo por descendiente (4º y ss. = 4.500) */
   var RED_MONOPARENTAL = 3400;          /* aprox. reducción situación familiar 1 */
+
+  /* art. 60 LIRPF — mínimo personal por discapacidad */
+  var DISCAP_MINIMO = [0, 3000, 9000];
+  /* art. 20 LIRPF — reducción adicional por rendimientos del trabajo para
+     trabajadores activos con discapacidad (se suma a reduccionTrabajo) */
+  var DISCAP_REDUC_TRABAJO = [0, 3500, 7750];
 
   function reduccionTrabajo(rnp) {
     if (rnp <= 14852) return 7302;
@@ -54,7 +60,7 @@
   function calc() {
     var bruto = Math.max(UI.num("sn-bruto"), 0);
     var hijos = Math.max(Math.round(UI.num("sn-hijos")), 0);
-    var discap = UI.num("sn-discap");
+    var discapGrado = Math.min(Math.max(Math.round(UI.num("sn-discap")), 0), 2);
     var mono = document.getElementById("sn-mono");
     var esMono = mono && mono.checked;
 
@@ -64,10 +70,12 @@
     /* Retención IRPF */
     var gastos = ss + OTROS_GASTOS;
     var rnp = bruto - gastos;                              /* rendimiento neto previo */
-    var rendNeto = Math.max(rnp - reduccionTrabajo(rnp), 0);
+    /* Reducción por trabajo (art. 20) + reducción adicional por discapacidad activa (art. 20 LIRPF) */
+    var rendNeto = Math.max(rnp - reduccionTrabajo(rnp) - DISCAP_REDUC_TRABAJO[discapGrado], 0);
     var baseLiquidable = Math.max(rendNeto - (esMono ? RED_MONOPARENTAL : 0), 0);
 
-    var minimo = MINIMO_PERSONAL + minimoDescendientes(hijos) + discap;
+    /* Mínimo personal (art. 57) + por descendientes (art. 58) + por discapacidad (art. 60) */
+    var minimo = MINIMO_PERSONAL + minimoDescendientes(hijos) + DISCAP_MINIMO[discapGrado];
     var cuota = UI.progresivo(baseLiquidable, IRPF) - UI.progresivo(minimo, IRPF);
     var irpf = Math.max(cuota, 0);
     var tipo = bruto > 0 ? (irpf / bruto) * 100 : 0;
